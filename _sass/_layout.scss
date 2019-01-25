@@ -153,6 +153,13 @@ footer .container {
 
 
 
+// In case the site somehow embeds rows within rows... etc
+.row .row, .container .container {
+	padding: 0;
+	margin: 0;
+}
+
+
 #{$content-wrapper} {
 
 	width: 100%;
