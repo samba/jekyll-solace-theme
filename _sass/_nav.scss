@@ -1,4 +1,5 @@
 
+
 // Implements a left-side column for navigation controlled by a (hidden) checkbox
 body.nav-sidebar {
     @import "sidebar";
@@ -13,6 +14,17 @@ body.nav-sidebar {
             width: calc(100% - 4em);
         }
     }
+
+       
+    @include medium {
+        // Offset the header to accommodate the navigation button.
+        header {
+            position: relative;
+            left: 2.5em;
+            width: calc(100% - 4em);
+        }
+    }
+
 
 
     // This adjusts the icon placement for LinkedIn
