@@ -1,32 +1,36 @@
 
     {% if paginator.posts %}
     {% for page in paginator.posts %}
-        <article class="post article">
+        <article class="post article row">
+            <div class="container">
             <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
             {% include post-meta.html %}
             <span class='excerpt'>
                 {{ page.excerpt | markdownify | truncatewords: 60 }}
             </span>
+            </div>
         </article>
     {% endfor %}
 
-    <nav class='paginator'>
-        {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination previous">Newer</a>
-        {% else %}
-            <span class="pagination previous disabled link">Newer</span>
-        {% endif %}
 
-        <span class="pagination counter">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-        {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | relative_url }}" class="pagination next">Older</a>
-        {% else %}
-            <span class="pagination next disabled link">Older</span>
-        {% endif %}
-    </nav>
+    <div class="paginator row">
+        <div class="container">
+        {% include paginator.html %}
+        </div>
+    </div>
 
     {% else %}
     <!-- PAGINATOR IS NOT WORKING -->
+    {% for page in site.posts limit:100 %}
+        <article class="post article row">
+            <div class="container">
+            <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
+            {% include post-meta.html %}
+            <span class='excerpt'>
+                {{ page.excerpt | markdownify | truncatewords: 60 }}
+            </span>
+            </div>
+        </article>
+    {% endfor %}
     {% endif %}
 

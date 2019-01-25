@@ -1,12 +1,17 @@
 ---
-layout: page
-metadata: false
+layout: default
+menu: false
 ---
 
+{% include header.html %}
 {{ content }}
 
 <!-- TODO featured categories -->
-
-<div class="blog paginated container">
+<div class="row">
+<div class="container blog paginated">
 {% include posts-paginate.html %}
 </div>
+</div>
+
+
+{% include footer.html %}

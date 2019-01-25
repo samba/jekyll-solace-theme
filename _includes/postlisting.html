@@ -16,10 +16,10 @@
     {% assign looplimit = site.posts | size %}
 {% endif %}
 
-<!-- (posts: {{ posts | size }})-->
 
-{% for page in posts limit:looplimit %}
-<article class="post article">
+{% for page in posts limit:looplimit reversed %}
+<article class="post article row">
+    <div class="container">
     <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
     {% include post-meta.html class="meta" %}
     {% if include.excerpt %}
@@ -33,6 +33,7 @@
         {{ page.content | markdownify }}
     </span>
     {% endif %}
+    </div>
 </article>
 {% endfor %}
 

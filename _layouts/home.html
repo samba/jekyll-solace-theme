@@ -14,13 +14,8 @@ menu: true
 {% endunless %}
 {% endif %}
 
-<div id="content" class='row'>
-<article class="container content {{page.content_class}}">
+
 {{ content }}
-</article>
-</div>
 
 
-{% unless page.site_footer == false %}
 {% include footer.html %}
-{% endunless %}

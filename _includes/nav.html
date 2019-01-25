@@ -14,16 +14,18 @@
         <section class="site pages">
             <ul>
 
-            {% assign pages = site.pages | where: "layout", "page" | sort: "permalink" %}
-            
-            {% for page in pages %}
-                {% if page.layout == blank %}{% continue %}{% endif %}
-                {% if page.title == blank %}{% continue %}{% endif %}
+    
+            {% assign pages = site.pages | where: "menu", true | sort: "permalink" %}
+
+            {% assign pages = pages | where_exp: "p", "p.title != blank" %}
+            {% assign pages = pages | where_exp: "p", "p.layout != blank" %}
+            {% assign pages = pages | where_exp: "p", "p.hidden != true" %}
+
+            {% for page in pages  %}
+
                 {% if page.url == site.url %}{% continue %}{% endif %}
-                {% if page.hidden %}{% continue %}{% endif %}
-                
                 <li class="page">
-                    <a class="page" href="{{page.permalink | default: page.url | prepend: site.baseurl }}">
+                    <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
                         {{ page.title | default: site.name | default: site.title }}
                     </a>
                 </li>

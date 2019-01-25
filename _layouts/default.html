@@ -17,34 +17,9 @@ hidden: false
 
 		<div id='bodywrapper'>
 
-			<header class="row thin">
-				<div class='container vcenter'>
-				{% assign hdr = "h1" %}
-				{% assign ttl = page.display_title | default: page.title %}
 
-				{% if ttl == blank %}
-					{% assign hdr = "h3" %}
-					{% assign ttl = site.name %}
-				{% endif %}
-				
-				<{{hdr}}>{{ttl}}</{{hdr}}>
-				<!-- <small>
-					{{page.subtitle | default:site.subtitle }}
-				</small> -->
-				</div>
-			</header>
+            {{content}}
 
-	
-
-			<div id="content" class='row'>
-
-                {{content}}
-
-			</div>
-
-			{% unless page.site_footer == false %}
-			{% include footer.html %}
-			{% endunless %}
 		</div>
 
 
