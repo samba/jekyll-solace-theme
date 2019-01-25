@@ -45,6 +45,8 @@ defaults:
       layout: "post"
       hidden: false
       seo_title: null
+      menu: false
+
   - scope:
       path: "" # an empty string here means all files in the project
       type: "pages" # previously `post` in Jekyll 2.2.
@@ -52,6 +54,14 @@ defaults:
       layout: "page"
       hidden: false
       seo_title: null
+      menu: true
+
+  - scope:  # this rule prevents blog listing pages from registering in nav menu
+      path: "blog"
+    values:
+      hidden: false
+      seo_title: null
+      menu: false
 
 
 plugins:
