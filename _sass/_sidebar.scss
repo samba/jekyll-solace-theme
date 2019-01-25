@@ -21,6 +21,7 @@ $float-cutoff-height: 40em !default;
 
 $activator-color: #505050 !default;
 $activator-background: #fff !default;
+$activator-border-mobile: transparentize($activator-color, 0.25);
 
 $navcolumn-width: 30em;
 
@@ -215,8 +216,7 @@ $navcolumn-width: 30em;
   }
 
   @include small {
-    // top: 0;
-    border: 1px $brand-color-dark solid;
+    border: 0.125rem $activator-border-mobile solid;
   }
 
   @media (min-width: $navcolumn-width) {
