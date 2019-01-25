@@ -15,6 +15,7 @@
 
 </div>
 
+{% unless include.show_tags == false %}
 {% assign count_tags = page.tags | size %}
 {% if count_tags > 1 %}
 <div class="post tags {{include.class}}">
@@ -23,7 +24,9 @@
 {% endfor %}
 </div>
 {% endif %}
+{% endunless %}
 
+{% unless include.show_categories == false %}
 {% assign count_categories = page.categories | size %}
 {% if page.category or count_categories > 1 %}
 <div class="post categories {{include.class}}">
@@ -35,4 +38,5 @@
 {% endif %}
 </div>
 {% endif %}
+{% endunless %}
 

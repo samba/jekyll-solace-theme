@@ -85,8 +85,6 @@ section.row, div.row, article.row , header.row, aside.row {
 }
 
 
-
-
 body .container {
 	display: block;
 	max-width: $content-width;
@@ -120,7 +118,6 @@ body .container {
 	@include columns;
 	
 }
-
 
 
 

@@ -1,9 +1,9 @@
 
 
 {% if include.category %}
-    {% assign posts = site.posts | where: "category",include.category %}
+    {% assign posts = site.posts | where_exp: "p","p.categories contains include.category" %}
 {% elsif include.tag %}
-    {% assign posts = site.posts | where: "tags",include.tag %}
+    {% assign posts = site.tags[include.tag] %}
 {% elsif include.sticky %}
     {% assign posts = site.posts | where: "sticky",include.sticky %}
 {% else %}
@@ -21,7 +21,7 @@
 <article class="post article row">
     <div class="container">
     <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
-    {% include post-meta.html class="meta" %}
+    {% include post-meta.html class="meta" show_tags=include.show_tags show_categories=include.show_categories %}
     {% if include.excerpt %}
     <span class='excerpt'>
         {% assign alt_excerpt = page.content | truncatewords: 60 %}

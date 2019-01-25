@@ -10,7 +10,8 @@ hidden: false
         {% include head.html %}
 	</head>
 
-	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ site.navigation_style | default: "nav-sidebar sidebar-overlay"}}">
+	{% assign navstyle = site.navigation_style | default: "nav-sidebar sidebar-overlay" %}
+	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ navstyle }} {{page.body_class}}">
 
 
         {% include nav.html %}
