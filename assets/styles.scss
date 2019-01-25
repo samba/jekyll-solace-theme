@@ -1,0 +1,12 @@
+---
+title: false
+styles: true
+---
+
+/* This stylesheet is intended to provide an easy way for sites to extend
+   the main styles of the theme. 
+   
+   A site can create their own at <assets/styles.scss>, and include the
+   line below, followed by any rules to customize the theme.
+*/
+@import "jekyll-solace-theme";

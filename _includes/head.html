@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="copyright" content="Copyright {{site.github.owner_name|default: site.author.name}} {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved."/>
+<link rel='canonical' href='{{site.url}}{{page.permalink}}'/>
+<link rel='me' href="https://twitter.com/{{site.twitter.username}}"/>
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico?'/>
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+<link rel="manifest" href="{{ "/manifest.json" | relative_url }}">
+<meta name="theme-color" content="{{ site.manifest.theme_color | default: '#242e2b' }}"/>
+
+
+
+{% if page.hidden %}
+<!-- page is hidden -->
+<meta name="robots" content="noindex">
+<title>{{page.title}} - {{site.name |default: site.title}}</title>
+<meta property="og:title" content="{{page.title}}" />
+<meta property="og:site_name" content="{{site.name}}" />
+{% else %}
+{% if page.seo_title %}
+{% seo title=false %}
+<title>{{ page.seo_title }}</title>
+{% else %}
+{% seo %}
+{% endif %}
+{% endif %}
+
+
+<!-- Font Awesome. -->
+<script src="https://use.fontawesome.com/679388f50b.js"></script>
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js" 
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+
+<link rel='stylesheet' href='{{ "/assets/styles.css" | relative_url }}'/>
+
+<script src='{{ "/assets/site.js" | relative_url }}'></script>
+
+

@@ -1,0 +1,209 @@
+
+$large-breakpoint: 64em !default;
+$medium-breakpoint: 42em !default;
+$tablet-width: 992px !default;
+$phone-width: 660px !default;
+$content-width: 40em !default;
+
+$inset-depth: 1em !default;
+$inset-radius: 0.25em !default;
+
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+@mixin fullwidth {
+	@media screen and (min-width: $content-width) {
+		@content;
+	}
+}
+
+@mixin compressed {
+	@media screen and (max-width: $content-width) {
+		@content;
+	}
+}
+
+@mixin large {
+    @media screen and (min-width: $large-breakpoint) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media screen and (max-width: $large-breakpoint) and (min-width: $medium-breakpoint) {
+        @content;
+    }
+}
+
+@mixin small {
+    @media screen and (max-width: $medium-breakpoint) {
+        @content;
+    }
+}
+
+
+@mixin inset($depth: $inset-depth, $radius: $inset-radius) {
+	border: {
+		style: solid;
+		radius: $radius;
+		color: rgba(0, 0, 0, 0.25);
+		width: 1px;
+	}
+
+	box-shadow: ($depth/30) ($depth/30) ($depth/3) 0em rgba(0, 0, 0, 0.25) inset;
+
+	padding: ($radius);
+
+}
+
+
+@mixin retina125 {
+	/* 1.25 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.25),
+	(min-resolution: 120dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+@mixin retina20 {
+	@media
+	(-webkit-min-device-pixel-ratio: 2),
+	(min-resolution: 192dpi) {
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+@mixin retina13 {
+	/* 1.3 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.3),
+	(min-resolution: 124.8dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+@mixin retina15 {
+	/* 1.5 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-resolution: 144dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+
+@mixin retina {
+	@include retina125 {
+		@content;
+	}
+	@include retina20 {
+		@content;
+	}
+	@include retina13 {
+		@content;
+	}
+	@include retina15 {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: $tablet-width){
+		/* Tablet and smaller */
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $tablet-width){
+		/* Desktop environments */
+		@content;
+	}
+}
+
+
+@mixin tinyphone {
+	@media (max-width: $phone-width), (orientation: portait){
+		/* Tiny phones, etc */
+		@content;
+	}
+}
+
+@mixin printonly {
+	@content;
+	@media screen {
+		display: none;
+	}
+}
+
+@mixin print {
+    @media print { 
+        @content;
+	}
+}
+
+
+
+
+// Implements a grid-style layout with 4 columns.
+@mixin columns {
+	
+	[class*="col-"] {
+		float: left;
+		padding-right: 2em;
+		height: 100%;
+	}
+	
+	[class*='col-']:last-of-type {
+		padding-right: 0;
+	}
+	
+	.col-1-2 {
+		width: 50%;
+		@include small {
+			width: 100%;
+		}
+	}
+	
+	.col-1-3 {
+		width: 33.33%;
+		@include small {
+			width: 100%;
+		}
+	}
+	
+	.col-1-4 {
+		width: 25%;
+		@include small {
+			width: 100%;
+		}
+	}
+	
+	.col-3-4 {
+		width: 75%;
+		@include small {
+			width: 100%;
+		}
+	}
+	
+	.col-2-3 {
+		width: 66.66%;
+		@include small {
+			width: 100%;
+		}
+	}
+	
+	
+}

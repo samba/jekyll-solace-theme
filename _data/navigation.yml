@@ -1,0 +1,7 @@
+menu:
+  - group: Link Group
+    links:
+      - name: Link One
+        url: http://example.com/1
+      - name: Link Two
+        url: http://example.com/2

@@ -1,0 +1,26 @@
+
+code.highlighter-rouge {
+	color: #992222;
+	background-color: #FFEFEF;
+}
+
+pre.highlight {
+
+	@include inset();
+
+	&,
+	& code {
+		font-family: $font-family-monospace;
+		background-color: transparent;
+		background: transparent;
+	}
+
+	padding: 1rem;
+
+
+	@include small {
+        width: 100%;
+        overflow: scroll;
+	}
+
+}

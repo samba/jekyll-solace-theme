@@ -1,0 +1,53 @@
+---
+layout: default
+hidden: false
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+        {% include head.html %}
+	</head>
+
+	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ site.navigation_style | default: "nav-sidebar sidebar-overlay"}}">
+
+
+        {% include nav.html %}
+
+		<div id='bodywrapper'>
+
+			<header class="row thin">
+				<div class='container vcenter'>
+				{% assign hdr = "h1" %}
+				{% assign ttl = page.display_title | default: page.title %}
+
+				{% if ttl == blank %}
+					{% assign hdr = "h3" %}
+					{% assign ttl = site.name %}
+				{% endif %}
+				
+				<{{hdr}}>{{ttl}}</{{hdr}}>
+				<!-- <small>
+					{{page.subtitle | default:site.subtitle }}
+				</small> -->
+				</div>
+			</header>
+
+	
+
+			<div id="content" class='row'>
+
+                {{content}}
+
+			</div>
+
+			{% unless page.site_footer == false %}
+			{% include footer.html %}
+			{% endunless %}
+		</div>
+
+
+	</body>
+
+</html>

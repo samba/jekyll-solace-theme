@@ -1,0 +1,25 @@
+/**
+ Blog listing configurtion
+
+ */
+div.blog {
+
+
+    article {
+
+
+        &.post {
+
+
+            a.readmore {
+                font-style: italic;
+            }
+
+        }
+
+
+        margin-bottom: 3em;
+
+    }
+
+}

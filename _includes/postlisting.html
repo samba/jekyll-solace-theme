@@ -1,0 +1,38 @@
+
+
+{% if include.category %}
+    {% assign posts = site.posts | where: "category",include.category %}
+{% elsif include.tag %}
+    {% assign posts = site.posts | where: "tags",include.tag %}
+{% elsif include.sticky %}
+    {% assign posts = site.posts | where: "sticky",include.sticky %}
+{% else %}
+    {% assign posts = site.posts %}
+{% endif %}
+
+{% if include.recent > 0 %}
+    {% assign looplimit = include.recent %}
+{% else %}
+    {% assign looplimit = site.posts | size %}
+{% endif %}
+
+<!-- (posts: {{ posts | size }})-->
+
+{% for page in posts limit:looplimit %}
+<article class="post article">
+    <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+    {% include post-meta.html class="meta" %}
+    {% if include.excerpt %}
+    <span class='excerpt'>
+        {% assign alt_excerpt = page.content | truncatewords: 60 %}
+        {{ page.excerpt | default:alt_excerpt | markdownify  }}
+    </span>
+    <a class="readmore" href="{{ page.url }}">Continue Reading</a>
+    {% elsif include.fullbody %}
+    <span class="post content">
+        {{ page.content | markdownify }}
+    </span>
+    {% endif %}
+</article>
+{% endfor %}
+

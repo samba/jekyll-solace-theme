@@ -1,0 +1,75 @@
+title: Jekyll Solace Theme
+description: An amazingly light, simple, but functional theme for Jekyll blogs
+
+# How many blog posts would you like to see on your /blog pages?
+paginate: 3
+paginate_path: /blog/page/:num
+
+# Populate the following with actual usernames, or delete them to prevent showing links
+author: 
+  name: Your Name Here
+  twitter: (twitter username)
+  linkedin: (linkedin username)
+  github: (github usernme)
+
+blog:
+  hide_categories: false
+  disabled: false
+
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  tables: true
+  autolink: true
+  auto_ids: true
+  syntax_highlighter: rouge
+  parse_block_html: true
+  parse_span_html: true
+
+
+highlighter: rouge
+
+rouge:
+  css_class: "codehilite"
+  scope: ".codehilite"
+
+
+defaults:
+  - scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "post"
+      hidden: false
+      seo_title: null
+  - scope:
+      path: "" # an empty string here means all files in the project
+      type: "pages" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "page"
+      hidden: false
+      seo_title: null
+
+
+plugins:
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jekyll-default-layout
+- jekyll-feed
+- rouge
+- kramdown
+
+exclude:
+- README.md
+- CNAME
+- Gemfile
+- Gemfile.lock
+- jekyll-solace-theme.gemspec
+- Makefile
+- util/*

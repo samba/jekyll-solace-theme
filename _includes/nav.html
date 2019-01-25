@@ -1,0 +1,100 @@
+
+
+<input type="checkbox" class="nav-checkbox" id="nav-checkbox">
+
+<!-- navigation sidebar control (activator) -->
+<label for="nav-checkbox" class="nav-toggle no-print">
+        <i class="fa fa-bars no-print" aria-hidden="true"></i>
+        </label>
+
+<div class='navigation sidebar no-print'>
+    <nav>
+
+        {% unless site.navigation.pages_disabled %}
+        <section class="site pages">
+            <ul>
+
+            {% assign pages = site.pages | where: "layout", "page" | sort: "permalink" %}
+            
+            {% for page in pages %}
+                {% if page.layout == blank %}{% continue %}{% endif %}
+                {% if page.title == blank %}{% continue %}{% endif %}
+                {% if page.url == site.url %}{% continue %}{% endif %}
+                {% if page.hidden %}{% continue %}{% endif %}
+                
+                <li class="page">
+                    <a class="page" href="{{page.permalink | default: page.url}}">
+                        {{ page.title | default: site.name | default: site.title }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </section>
+        {% endunless %}
+
+        {% unless site.blog.disabled %}
+        <section class="site blog">
+     
+            <ul>
+                <!-- just the first page of blog (main) -->
+                {% assign blogpages = site.pages | where: "layout", "blog" | sort: "url" %}
+                {% for page in blogpages limit:1 %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            
+            {% unless site.blog.hide_categories %}
+            <em>Categories</em>
+            <ul>
+                {% for category in site.categories limit:10 %}
+                {% assign cat = category | first %}
+                <li><a href="/blog/category/#{{cat | slugify }}">{{ cat }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endunless %}
+
+        </section>
+        {% endunless %}
+
+        {% if site.data.navigation.menu %}
+        <section class="site links">
+        
+        {% for group in site.data.navigation.menu %}
+        <em>{{ group.group }}</em>
+        <ul>
+        {% for link in group.links %}
+            <li><a class="link {{ group[0] | slugify }}" href="{{link.url}}">{{link.name}}</a></li>
+        {% endfor %}
+        </ul>
+        {% endfor %}
+
+        </section>
+        {% endif %}
+
+        {% if site.author %}
+        <section class="contact">
+            <em>Contact</em>
+            <ul id='contactinfo'>
+            {% if site.author.twitter %}
+            <li class='naturalcase'>{% include icon-twitter.html username=site.author.twitter %}</li>
+            {% endif %}
+            {% if site.author.github %}
+            <li class='naturalcase'>{% include icon-github.html username=site.author.github %}</li>
+            {% endif %}
+            {% if site.author.linkedin %}
+            <li class='naturalcase'>
+                <a href='http://www.linkedin.com/in/{{site.author.linkedin}}'  class='naturalcase'  target="_blank">
+                    <i class="fa fa-linkedin fa-lg icon-dimmed"></i>LinkedIn</a></li>
+            {% endif %}
+        </section>
+        {% endif %}
+
+      
+
+        <section class="copyright bottom">
+        <em id='copyright' class="naturalcase">
+        &copy; {{page.date|default:site.time|date:"%Y"}}. All Rights Reserved.
+        </em>
+        </section>
+    </nav>
+</div>

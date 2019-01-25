@@ -1,0 +1,262 @@
+/**
+Layout provides several shortcuts for sizing and aligning standard components.
+Depends on <_util.scss> for some mixins.
+
+Correct structuring to use this layout is like:
+
+
+	<body>
+		<header class="row">
+			<div class="container">
+				<div class="col-2-3">
+					(fills 66% of width)
+				</div>
+				<div class="col-1-3">
+					(fills 33% of width)
+				</div>
+			</div>
+		</header>
+
+	</body>
+
+
+**/
+
+$content-wrapper: 'div#bodywrapper' !default;
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	/* padding-top: 60px; */
+	position: relative;
+}
+
+*, *:after, *:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/**
+Zebra sections, alternating horizontal segments of the page, get text and 
+background styles. Even rows get a dark background with light text.
+
+NB: these are *outside* the .container elements indicated below.
+
+**/
+section.row, div.row, article.row , header.row, aside.row {
+
+	padding: 0.5em;
+
+	.container {
+		padding: 1em 0 1.5em 0;
+	}
+	
+	&.thin .container {
+
+		padding: 0.1em 0;
+
+		.container {
+			padding: 0.1em 0;
+		}
+	}
+
+	&.zebra:nth-child(even){
+		background-color: $background-dark;
+		color: $text-color-light;
+		
+		a {
+			color: $brand-color;
+		}
+		
+		@media print {
+			background-color: transparent;
+			color: $text-color;
+			border-top: 1px dashed $grey-color;
+			border-bottom: 1px dashed $grey-color;
+		}
+	}
+	
+	@extend %clearfix;
+}
+
+
+
+
+body .container {
+	display: block;
+	max-width: $content-width;
+	clear: both;
+	padding: 0em;
+	height: 100%;
+
+	@extend %clearfix;
+	
+	&.pad { // specifically containers that have pads
+		padding: 1em;
+	}
+	
+	
+	.pad {
+		/* To be applied generically on things that need a little room. */
+		padding: {
+			top: 0.25em;
+			left: 1em;
+			right: 1em;
+			bottom: 0.25em;
+		}
+	}
+	
+	.alone, .row {
+		width: 100%;
+		clear: both;
+	}
+
+	
+	@include columns;
+	
+}
+
+
+
+
+header .container {
+	// padding: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: {
+		top: 0.1em; // ($header-band-height * 0.25);
+		bottom: 0.1em; // ($header-band-height * 0.25);
+	}
+	
+	h1, h2, h3, h4, h5 {
+		
+	}
+	
+	@extend %clearfix;
+}
+
+
+footer .container {
+	margin: {
+		top: 0.5rem;
+		bottom: 0.5rem;
+	}
+	padding: 0.5em;
+
+	@extend %clearfix;
+}
+
+
+
+#{$content-wrapper} {
+
+	width: 100%;
+	max-width: 100%;
+
+	@include large {
+		.container {
+			margin-left: 2.5em;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+}
+
+
+
+
+/**********************/
+/* Convenience styles */
+
+.hidden {
+	display: none;
+}
+
+// this seems redundant...
+div.hidden, span.hidden, section.hidden {
+	display: none;
+}
+
+// Fixed-width elements should retain their width when hidden.
+div.fixedwidth.hidden, span.fixedwidth.hidden, tr.hidden {
+	visibility: hidden;
+	max-height: 0;
+	min-height: 0;
+	height: 0;
+}
+
+.nopadding {
+	padding: 0 !important;
+}
+
+.nomargin {
+	margin: 0;
+}
+
+.hide-small {
+	display: inline-block;
+	@include small {
+		display: none;
+	}
+}
+
+.show-small {
+	display: none;
+
+	@include small {
+		display: inline-block;
+	}
+
+}
+
+
+span.avoidwrap { display:inline-block; }
+
+.scrollable {
+	overflow-y: auto;
+}
+
+.center {
+	text-align: center;
+}
+
+.vcenter {
+	vertical-align: middle;
+}
+
+.float.right {
+	// This element will float to the right within its parent.
+	float: right;
+}
+
+.right {
+	// Inner content will be right-aligned.
+	vertical-align: right;
+	text-align: right;
+}
+
+* + .fillright {
+	float: left;
+	clear: left;
+}
+
+.fillright {
+	clear: right;
+	float: right;
+	text-align: right;
+	display: block;
+}
+
+
+aside, h1, h2, h3, h4, h5, h6  {
+	&.inline {
+		display: inline-block;
+	}
+}
+

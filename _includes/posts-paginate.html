@@ -1,0 +1,32 @@
+
+    {% if paginator.posts %}
+    {% for page in paginator.posts %}
+        <article class="post article">
+            <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+            {% include post-meta.html %}
+            <span class='excerpt'>
+                {{ page.excerpt | markdownify | truncatewords: 60 }}
+            </span>
+        </article>
+    {% endfor %}
+
+    <nav class='paginator'>
+        {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path }}" class="pagination previous">Newer</a>
+        {% else %}
+            <span class="pagination previous disabled link">Newer</span>
+        {% endif %}
+
+        <span class="pagination counter">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+        {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="pagination next">Older</a>
+        {% else %}
+            <span class="pagination next disabled link">Older</span>
+        {% endif %}
+    </nav>
+
+    {% else %}
+    <!-- PAGINATOR IS NOT WORKING -->
+    {% endif %}
+

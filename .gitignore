@@ -1,0 +1,5 @@
+.sass-cache
+_site
+DOCKER_ENV.local
+cache
+.jekyll-metadata

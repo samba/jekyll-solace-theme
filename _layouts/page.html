@@ -1,0 +1,17 @@
+---
+layout: default
+metadata: false
+---
+
+{% unless page.metadata == false %}
+<aside class='row meta thin'>
+
+
+{% include post-meta.html class="container" %}
+
+</aside>
+{% endunless %}
+
+<article class="container content">
+{{ content }}
+</article>

@@ -1,0 +1,37 @@
+<div class="publish date {{include.class}}">
+    <span class="avoidwrap">
+    Published
+    <time class='post timestamp' datetime='{{ page.date | default: site.time | date: "%F %T %Z" }}'>
+        {{page.date | default: site.time | date_to_string }}
+    </time>
+    </span>
+
+    {% if page.author or site.author.name %}
+    {% assign author = page.author | default: site.author.name %}
+    <span class="author {{author | slugify }} avoidwrap">by 
+        <a href="/author/#{{author | slugify}}" class="author">{{ author }}</a></span>
+    {% endif %}
+
+</div>
+
+{% assign count_tags = page.tags | size %}
+{% if count_tags > 1 %}
+<div class="post tags {{include.class}}">
+{% for tag in page.tags %}
+{% include tag-link.html tag=tag %}
+{% endfor %}
+</div>
+{% endif %}
+
+{% assign count_categories = page.categories | size %}
+{% if page.category or count_categories > 1 %}
+<div class="post categories {{include.class}}">
+{% for category in page.category %}
+{% include category-link.html category=category %}
+{% endfor %}
+{% if page.category %}
+{% include category-link.html category=page.category %}
+{% endif %}
+</div>
+{% endif %}
+
