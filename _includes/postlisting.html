@@ -20,14 +20,14 @@
 
 {% for page in posts limit:looplimit %}
 <article class="post article">
-    <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+    <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
     {% include post-meta.html class="meta" %}
     {% if include.excerpt %}
     <span class='excerpt'>
         {% assign alt_excerpt = page.content | truncatewords: 60 %}
         {{ page.excerpt | default:alt_excerpt | markdownify  }}
     </span>
-    <a class="readmore" href="{{ page.url }}">Continue Reading</a>
+    <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
     {% elsif include.fullbody %}
     <span class="post content">
         {{ page.content | markdownify }}

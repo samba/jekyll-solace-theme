@@ -23,7 +23,7 @@
                 {% if page.hidden %}{% continue %}{% endif %}
                 
                 <li class="page">
-                    <a class="page" href="{{page.permalink | default: page.url}}">
+                    <a class="page" href="{{page.permalink | default: page.url | prepend: site.baseurl }}">
                         {{ page.title | default: site.name | default: site.title }}
                     </a>
                 </li>
@@ -39,7 +39,7 @@
                 <!-- just the first page of blog (main) -->
                 {% assign blogpages = site.pages | where: "layout", "blog" | sort: "url" %}
                 {% for page in blogpages limit:1 %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
                 {% endfor %}
             </ul>
             
@@ -48,7 +48,8 @@
             <ul>
                 {% for category in site.categories limit:10 %}
                 {% assign cat = category | first %}
-                <li><a href="/blog/category/#{{cat | slugify }}">{{ cat }}</a></li>
+                {% assign catslug = cat | slugify %}
+                <li><a href={{ "/blog/category/#" | append: catslug | relative_url }}>{{ cat }}</a></li>
                 {% endfor %}
             </ul>
             {% endunless %}

@@ -8,8 +8,9 @@
 
     {% if page.author or site.author.name %}
     {% assign author = page.author | default: site.author.name %}
-    <span class="author {{author | slugify }} avoidwrap">by 
-        <a href="/author/#{{author | slugify}}" class="author">{{ author }}</a></span>
+    {% assign authslug = author | slugify %}
+    <span class="author {{ authslug }} avoidwrap">by 
+        <a href="{{ "/author/#" | append: authslug | prepend: site.baseurl }}" class="author">{{ author }}</a></span>
     {% endif %}
 
 </div>

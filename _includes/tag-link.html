@@ -1,1 +1,3 @@
-<aside class="tag inline"><a class="tag" href="/tags/#{{ include.tag | downcase }}">{{ include.tag }}</a></aside>
+
+{% assign tagslug = include.tag | slugify %}
+<aside class="tag inline"><a class="tag" href="{{ "/tags/#" | append: tagslug | prepend: site.baseurl }}">{{ include.tag }}</a></aside>
