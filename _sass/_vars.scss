@@ -8,12 +8,12 @@ $content-width:    48em !default;
 
 
 // Colors
-$brand-color:      darken(rgb(80, 170, 215), 20%);
+$brand-color:      rgb(0, 107, 36);
 $brand-color-shade: lighten($brand-color, 50%);
 $brand-color-light: lighten($brand-color, 80%);
-$brand-color-dark: darken($brand-color, 00%);
+$brand-color-dark:  darken($brand-color, 10%);
 
-$background-dark:  darken($brand-color, 20%);
+$background-dark:   transparent(darken($brand-color-dark, 10%), 20%);
 $background-color: #fdfdfd;
 $background-primary: transparent;
 
