@@ -9,9 +9,8 @@ $sidebar-control: 'label[for="nav-checkbox"]' !default;
 
 $sidebar-width: 18rem !default;
 $sidebar-font-size: 0.9rem !default;
-$sidebar-font-family: $base-font-family-sans !default;
-// $sidebar-background: #202020 !default;
-$sidebar-background: rgba(20, 20, 20, 0.9) !default;
+$sidebar-font-family: "Arial" !default;
+$sidebar-background: black !default;
 $sidebar-font-color: rgba(255,255,255,0.6) !default;
 
 $sidebar-link-color: #FFFFFF !default;
@@ -23,7 +22,7 @@ $activator-color: #505050 !default;
 $activator-background: #fff !default;
 $activator-border-mobile: transparentize($activator-color, 0.25);
 
-$navcolumn-width: 30em;
+$navcolumn-width: 30em !default;
 
 #{$content-wrapper} {
 	position: relative;

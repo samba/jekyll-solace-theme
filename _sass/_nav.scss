@@ -2,6 +2,12 @@
 
 // Implements a left-side column for navigation controlled by a (hidden) checkbox
 body.nav-sidebar {
+
+    @import "vars";
+    $sidebar-background: $brand-color-dark;
+    $sidebar-font-family: $base-font-family-sans;
+    $activator-color: $brand-color-dark;
+    $activator-background: $background-color;
     @import "sidebar";
     
 
