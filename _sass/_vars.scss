@@ -10,16 +10,17 @@ $content-width:    48em !default;
 // Colors
 $brand-color:      rgb(0, 107, 36);
 $brand-color-shade: lighten($brand-color, 50%);
-$brand-color-light: lighten($brand-color, 80%);
+$brand-color-light: lighten($brand-color, 10%);
 $brand-color-dark:  darken($brand-color, 10%);
 
-$background-dark:   transparent(darken($brand-color-dark, 10%), 20%);
+$background-dark:   transparentize(darken($brand-color-dark, 10%), 0.2);
 $background-color: #fdfdfd;
 $background-primary: transparent;
 
 // Regular text
 $text-color:       #111;
 $text-color-light: white;  // used on brand-colored elements
+$text-background-highlight: transparentize($brand-color-light, 0.3);
 
 // Undertone text
 $grey-color:       #828282;
