@@ -1,0 +1,16 @@
+{% assign related_posts = [] %}
+{% assign post = include.post | default: page %}
+
+
+{% for tag in post.tags %}
+{% assign related_posts = related_posts | concat: site.tags[tag] %}
+{% endfor %}
+
+{% assign related_posts = related_posts | where_exp: "p", "p.url != page.url" | uniq %}
+
+<ul class="related-posts">
+    <!-- showing up to {{ include.limit | default: "<unlimited>" }} posts -->
+{% for p in related_posts limit:include.limit %}
+<li class="post related"><a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a></li>    
+{% endfor %}
+</ul> 
