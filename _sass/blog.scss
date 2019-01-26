@@ -23,3 +23,15 @@ div.blog {
     }
 
 }
+
+div.post {
+    a.tag {
+        font-size: 1rem;
+        display: inline-block;
+        border: 1px $brand-color-dark solid;
+        border-radius: 0.25rem;
+        background-color: $text-background-highlight;
+        color: $text-color-light;
+        padding: 0.25rem;
+    }
+}
