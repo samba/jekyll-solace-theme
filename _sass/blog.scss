@@ -1,37 +1,66 @@
 /**
  Blog listing configurtion
-
  */
-div.blog {
 
 
-    article {
 
 
-        &.post {
+body {
 
+    div.post {
 
-            a.readmore {
-                font-style: italic;
-            }
-
+        a.tag {
+            // font-size: 1rem;
+            display: inline-block;
+            // border: 1px $brand-color-dark solid;
+            // border-radius: 0.25rem;
+            // background-color: $text-background-highlight;
+            color: $text-color-brand;
+            // padding: 0.25rem;
         }
 
+        span.meta-label {
+            font-style: italic;
+        }
+        
+    }
 
-        // margin-bottom: 3em;
+    div.blog {
+
+        article {
+    
+            &.post {
+    
+                a.readmore {
+                    font-style: italic;
+                }
+    
+            }
+    
+        }
+    
+    }
+
+
+    span.meta-label {
+        display: inline-block;
+    }
+
+    &.layout-post {
+        div.post.categories {
+            display: none;
+        }
+
+        span.meta-label {
+            // display: none;
+        }
+    }
+
+    &.layout-blog {
 
     }
 
-}
+    &.layout-home {
 
-div.post {
-    a.tag {
-        font-size: 1rem;
-        display: inline-block;
-        border: 1px $brand-color-dark solid;
-        border-radius: 0.25rem;
-        background-color: $text-background-highlight;
-        color: $text-color-light;
-        padding: 0.25rem;
     }
 }

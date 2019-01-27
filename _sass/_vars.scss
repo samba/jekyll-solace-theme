@@ -20,7 +20,8 @@ $background-primary: transparent;
 // Regular text
 $text-color:       #111;
 $text-color-light: white;  // used on brand-colored elements
-$text-background-highlight: transparentize($brand-color-light, 0.3);
+$text-background-highlight: transparentize($brand-color, 0.7);
+$text-color-brand: $brand-color-dark;
 
 // Undertone text
 $grey-color:       #828282;

@@ -7,7 +7,7 @@ related_limit: 15
 {% include header.html %}
 
 <aside class='row meta thin'>
-{% include post-meta.html class="container" %}
+{% include post-meta.html class="container" show_tags=false show_categories=false %}
 </aside>
 
 <article class="row">
@@ -15,6 +15,12 @@ related_limit: 15
 {{ content | markdownify }}
 </div>
 </article>
+
+<aside class="row">
+    <div class="containers">
+        {% include post-tags.html %}
+    </div>
+</aside>
 
 {% assign count_tags = page.tags | size %}
 {% if count_tags > 0 %}

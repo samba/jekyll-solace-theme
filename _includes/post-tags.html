@@ -1,0 +1,9 @@
+{% assign count_tags = page.tags | size %}
+{% if count_tags > 1 %}
+<div class="post tags {{include.class}} meta">
+    <span class="meta-label">tagged</span>
+{% for tag in page.tags %}
+{% include tag-link.html tag=tag %}
+{% endfor %}
+</div>
+{% endif %}

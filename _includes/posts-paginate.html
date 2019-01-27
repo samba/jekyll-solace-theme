@@ -8,6 +8,7 @@
             <span class='excerpt'>
                 {{ page.excerpt | markdownify | truncatewords: 60 }}
             </span>
+            <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
             </div>
         </article>
     {% endfor %}
@@ -29,6 +30,7 @@
             <span class='excerpt'>
                 {{ page.excerpt | markdownify | truncatewords: 60 }}
             </span>
+            <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
             </div>
         </article>
     {% endfor %}

@@ -1,0 +1,12 @@
+{% assign count_categories = page.categories | size %}
+{% if page.category or count_categories > 1 %}
+<div class="post categories {{include.class}} meta">
+    <span class="meta-label">categories</span>
+{% for category in page.category %}
+{% include category-link.html category=category %}
+{% endfor %}
+{% if page.category %}
+{% include category-link.html category=page.category %}
+{% endif %}
+</div>
+{% endif %}
