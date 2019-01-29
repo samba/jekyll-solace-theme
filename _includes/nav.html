@@ -14,19 +14,21 @@
         <section class="site pages">
             <ul>
 
-    
+            {% assign viable_suffix = "markdown/md/html/htm" | split: "/" %}
             {% assign pages = site.pages | where: "menu", true | sort: "permalink" %}
-
-            {% assign pages = pages | where_exp: "p", "p.title != blank" %}
             {% assign pages = pages | where_exp: "p", "p.layout != blank" %}
             {% assign pages = pages | where_exp: "p", "p.hidden != true" %}
 
             {% for page in pages %}
+                {% assign suffix = page.name | split: "." | last | lower %}
+
+                {% if viable_suffix contains suffix %}
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
                         {{ page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
                 </li>
+                {% endif %}
             {% endfor %}
             </ul>
         </section>
