@@ -22,8 +22,7 @@
             {% assign pages = pages | where_exp: "p", "p.hidden != true" %}
 
             {% for page in pages  %}
-
-                {% if page.url == site.url %}{% continue %}{% endif %}
+                {% if page.menu == false %}{% continue %}{% endif %}
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
                         {{ page.title | default: site.name | default: site.title }}
@@ -66,7 +65,9 @@
         <em>{{ group.group }}</em>
         <ul>
         {% for link in group.links %}
-            <li><a class="link {{ group[0] | slugify }}" href="{{link.url}}">{{link.name}}</a></li>
+            {% assign target = link.target | default: "_self" %}
+            {% if target == "new" %}{% assign target="_blank" %}{% endif %}
+            <li><a class="link {{ group[0] | slugify }}" href="{{link.url}}" target="{{target}}">{{link.name}}</a></li>
         {% endfor %}
         </ul>
         {% endfor %}
