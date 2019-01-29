@@ -21,11 +21,10 @@
             {% assign pages = pages | where_exp: "p", "p.layout != blank" %}
             {% assign pages = pages | where_exp: "p", "p.hidden != true" %}
 
-            {% for page in pages  %}
-                {% if page.menu == false %}{% continue %}{% endif %}
+            {% for page in pages %}
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
-                        {{ page.title | default: site.name | default: site.title }}
+                        {{ page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
                 </li>
             {% endfor %}
