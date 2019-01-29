@@ -2,11 +2,11 @@
 <header class="row thin">
     <div class='container vcenter'>
     {% assign hdr = "h1" %}
-    {% assign ttl = page.display_title | default: page.title %}
+    {% assign ttl = include.title | default: page.display_title | default: page.title %}
 
     {% if ttl == blank %}
         {% assign hdr = "h3" %}
-        {% assign ttl = site.name %}
+        {% assign ttl = site.name | default: site.title  %}
     {% endif %}
     
     <{{hdr}}>{{ttl}}</{{hdr}}>

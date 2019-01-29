@@ -4,7 +4,8 @@ metadata: false
 menu: true
 ---
 
-{% include header.html %}
+{% assign title = page.title | default: site.title %}
+{% include header.html title=title %}
 
 {% if page.date %}
 {% unless page.metadata == false %}
