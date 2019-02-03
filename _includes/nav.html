@@ -14,21 +14,33 @@
         <section class="site pages">
             <ul>
 
-            {% assign viable_suffix = "markdown/md/html/htm" | split: "/" %}
-            {% assign pages = site.pages | where: "menu", true | sort: "permalink" %}
-            {% assign pages = pages | where_exp: "p", "p.layout != blank" %}
-            {% assign pages = pages | where_exp: "p", "p.hidden != true" %}
+            {% assign pages = site.pages %}
+            {% assign hidden = "hidden,blog" | split: "," %}
+
+            {% if site.navigation.pages %}
+            {% assign pages = site.navigation.pages %}
+            {% endif %}
+
+
+            {% assign home = pages | where_exp: "p", "p.url == site.url" | first %}
+            {% assign pages = pages | where_exp: "p", "p.title != blank" %}
+            {% assign pages = pages | where_exp: "p", "p.menu != false" %}
 
             {% for page in pages %}
-                {% assign suffix = page.name | split: "." | last | lower %}
-
-                {% if viable_suffix contains suffix %}
+                {% assign title_default = nil %}
+                {% if page.title == "site.title" %}
+                {% assign title_default = "(site title)" %}
+                {% endif %}
+                {% unless hidden contains page.collection %}
+                {% if title_default or page.title %}
+                <!-- {{ page | jsonify }} -->
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
-                        {{ page.menu_title | default: page.title | default: "(untitled)" }}
+                        {{ title_default | default: page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
                 </li>
                 {% endif %}
+                {% endunless %}
             {% endfor %}
             </ul>
         </section>
@@ -39,7 +51,7 @@
      
             <ul>
                 <!-- just the first page of blog (main) -->
-                {% assign blogpages = site.pages | where: "layout", "blog" | sort: "url" %}
+                {% assign blogpages = site.blog | sort: "url" %}
                 {% for page in blogpages limit:1 %}
                 <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
                 {% endfor %}

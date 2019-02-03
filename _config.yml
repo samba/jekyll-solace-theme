@@ -18,6 +18,21 @@ blog:
   disabled: false
 
 
+collections:
+  posts:
+    title: "Blog"
+    layout: post
+    menu_exclude: true
+  blog:  # tags & categories index pages
+    layout: blog
+    output: true
+  hidden:
+    layout: page
+    menu_exclude: true
+    hidden: true
+    output: true
+
+
 markdown: kramdown
 
 kramdown:
@@ -58,7 +73,7 @@ defaults:
       menu: true
 
   - scope:  # this rule prevents blog listing pages from registering in nav menu
-      path: "blog"
+      path: "blog/"
     values:
       hidden: false
       seo_title: null

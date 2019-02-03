@@ -1,0 +1,12 @@
+<div class="collection collection-list {{include.collection}}">
+{% assign collection = site.collections | where: "label", include.collection | first %}
+<h1>{{ collection.title }}</h1>
+{% for page in collection %}
+    <div class="collection collection-item {{include.collection}}">
+        <h2 class="title"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h2>
+        {% if page.subtitle %}
+        <span class="subtitle">{{ page.subtitle }}</span>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
