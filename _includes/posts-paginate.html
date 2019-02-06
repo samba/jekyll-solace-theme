@@ -1,7 +1,7 @@
 
     {% if paginator.posts %}
     {% for page in paginator.posts %}
-    {% include post.html page=page %}
+    {% include post.html page=page excerpt=include.excerpt fullbody=include.fullbody show_tags=include.show_tags show_categories=include.show_categories %}
     {% endfor %}
 
 
