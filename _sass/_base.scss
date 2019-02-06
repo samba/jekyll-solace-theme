@@ -72,6 +72,9 @@
     @include printonly;
 }
 
+.no-print {
+    @include noprint;
+}
 
 
 /* Headings :) */
@@ -134,7 +137,13 @@ body {
 
     font-family: $base-font-family;
     font-size: $base-font-size;
+    word-spacing: 0.15rem;
+    letter-spacing: 0.025rem;
 
+
+    @include large {
+        height: 100%;
+    }
 
     .small {
         font-size: $small-font-size;
@@ -144,5 +153,31 @@ body {
     .meta {
         font-style: italic;
         color: $grey-color;
+    }
+
+    .dark {
+        .meta {
+            color: transparentize($color: $text-color-light, $amount: 0.4);
+
+            @include print {
+                color: $grey-color;
+            }
+        }
+    }
+
+    #{$content-wrapper} {
+        position: relative;
+                
+        @include large {
+            height: 100%;
+        }
+
+        .bottom {
+            @include large {
+                // position: absolute;
+            }
+            bottom: 0;
+        }
+
     }
 }

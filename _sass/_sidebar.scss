@@ -131,7 +131,7 @@ $navcolumn-width: 30em !default;
   &.bottom {
     // Apply default cutoff
     @media screen and (min-height: $float-cutoff-height){
-      position: absolute;
+      // position: absolute;
       bottom: 0;
     }
 

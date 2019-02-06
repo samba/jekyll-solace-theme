@@ -4,9 +4,6 @@ metadata: false
 menu: true
 ---
 
-{% assign title = page.title | default: site.title %}
-{% include header.html title=title %}
-
 {% if page.date %}
 {% unless page.metadata == false %}
 <aside class='row meta thin'>

@@ -4,22 +4,47 @@ hidden: false
 ---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
+{% assign collection_meta = site.collections | where: "label", page.collection | first %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
         {% include head.html %}
 	</head>
 
 	{% assign navstyle = site.navigation_style | default: "nav-sidebar sidebar-overlay" %}
-	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ navstyle }} {{page.body_class}}">
+	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ navstyle }} {{page.body_class}} {{ collection_meta.body_class | default: "default-collection" }}">
 
 
-        {% include nav.html %}
+		{% include nav.html %}
+		
 
 		<div id='bodywrapper'>
+		{% assign pagetitle = page.title | default: site.title %}
+		{% include header.html title=pagetitle %}
 
 
-            {{content}}
+            	{{content}}
+
+		<footer class="row bottom">
+		{% include footer.html %}
+		<div class="container vcenter center">
+			<p>
+			<span class="copyright meta small">
+			&copy; {{ page.author | default: site.author.name }},
+				{{ page.date | default: site.time | date: "%Y" }}. 
+				All Rights Reserved.
+			</span>
+
+			<span class='print-only small'>
+			Retrieved from &lt;{{site.url}}{{page.url}}&gt;.
+			</span>
+			</p>
+
+			<p><a class="home meta small" href="{{ "/" | relative_url }}">{{ site.title }}</a></p>
+		</div>
+		<div class="container no-print vcenter center">
+			
+		</div>
+		</footer>
 
 		</div>
 

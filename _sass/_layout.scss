@@ -31,7 +31,6 @@ html, body {
 }
 
 body {
-	/* padding-top: 60px; */
 	position: relative;
 }
 
@@ -48,7 +47,7 @@ background styles. Even rows get a dark background with light text.
 NB: these are *outside* the .container elements indicated below.
 
 **/
-section.row, div.row, article.row , header.row, aside.row {
+section.row, div.row, article.row , header.row, aside.row, footer.row {
 
 	padding: 0.5em;
 
@@ -65,7 +64,7 @@ section.row, div.row, article.row , header.row, aside.row {
 		}
 	}
 
-	&.zebra:nth-child(even){
+	&.zebra:nth-child(even), &.dark{
 		background-color: $background-dark;
 		color: $text-color-light;
 		
@@ -90,7 +89,7 @@ body .container {
 	max-width: $content-width;
 	clear: both;
 	padding: 0em;
-	height: 100%;
+	// height: 100%;
 
 	@extend %clearfix;
 	
@@ -146,6 +145,7 @@ footer .container {
 	padding: 0.5em;
 
 	@extend %clearfix;
+
 }
 
 
@@ -163,6 +163,8 @@ footer .container {
 	max-width: 100%;
 
 	@include large {
+		height: 100%;
+
 		.container {
 			margin-left: 2.5em;
 			margin-left: auto;

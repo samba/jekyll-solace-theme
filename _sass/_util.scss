@@ -152,6 +152,13 @@ $inset-radius: 0.25em !default;
 	}
 }
 
+@mixin noprint {
+	@content;
+	@media print {
+		display: none;
+	}
+}
+
 @mixin printonly {
 	@content;
 	@media screen {
