@@ -9,7 +9,10 @@ code.highlighter-rouge {
 
 div.highlighter-rouge div.highlight {
 
-	@include boxset(1rem);
+	//@include boxset(1rem);
+	$border-shadow-depth: 0.125rem;
+	box-shadow: 0 0 $border-shadow-depth ($border-shadow-depth/2) rgba(0, 0, 0, 0.1) inset;
+	border-radius: $border-shadow-depth;
 	padding: 0;
 	background-color: transparent;
 }
