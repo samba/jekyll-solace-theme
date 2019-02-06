@@ -10,6 +10,7 @@
 <div class='navigation sidebar no-print'>
     <nav>
 
+
         {% unless site.navigation.pages_disabled %}
         <section class="site pages">
             <ul>
@@ -21,22 +22,17 @@
             {% assign pages = site.navigation.pages %}
             {% endif %}
 
-
-            {% assign home = pages | where_exp: "p", "p.url == site.url" | first %}
             {% assign pages = pages | where_exp: "p", "p.title != blank" %}
-            {% assign pages = pages | where_exp: "p", "p.menu != false" %}
+           
 
+            {% assign pages = pages | sort: "url" %}
             {% for page in pages %}
-                {% assign title_default = nil %}
-                {% if page.title == "site.title" %}
-                {% assign title_default = "(site title)" %}
-                {% endif %}
-                {% unless hidden contains page.collection %}
-                {% if title_default or page.title %}
-                <!-- {{ page | jsonify }} -->
+
+                {% unless hidden contains page.collection or page.menu == false %}
+                {% if page.title %}
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
-                        {{ title_default | default: page.menu_title | default: page.title | default: "(untitled)" }}
+                        {{ title_default | default: page.menu_title | default: page.title | default: col_meta.title | default: "(untitled)" }}
                     </a>
                 </li>
                 {% endif %}
@@ -46,24 +42,35 @@
         </section>
         {% endunless %}
 
-        {% unless site.blog.disabled %}
+        {% unless site.navigation.hide_blog %}
         <section class="site blog">
      
             <ul>
                 <!-- just the first page of blog (main) -->
-                {% assign blogpages = site.blog | sort: "url" %}
-                {% for page in blogpages limit:1 %}
-                <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
-                {% endfor %}
+                {% assign blogpage = site.pages | where: "path", "blog/index.html" | first %}
+                <li><a href="{{ blogpage.url | prepend: site.baseurl }}">{{ blogpage.title }}</a></li>
             </ul>
             
-            {% unless site.blog.hide_categories %}
+            {% unless site.navigation.hide_blog_categories %}
+            {% assign cats = site.navigation.category_count | default: 3 %}
             <em>Categories</em>
             <ul>
-                {% for category in site.categories limit:10 %}
+                {% for category in site.categories limit:cats %}
                 {% assign cat = category | first %}
                 {% assign catslug = cat | slugify %}
                 <li><a href={{ "/blog/category/#" | append: catslug | relative_url }}>{{ cat }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endunless %}
+
+            {% unless site.navigation.hide_blog_tags %}
+            {% assign tagc = site.navigation.tag_count | default: 3 %}
+            <em>Tags</em>
+            <ul>
+                {% for tag in site.tags limit:tagc %}
+                {% assign t = tag | first %}
+                {% assign tagslug = t | slugify %}
+                <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }}>{{ t }}</a></li>
                 {% endfor %}
             </ul>
             {% endunless %}

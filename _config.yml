@@ -13,24 +13,72 @@ author:
   linkedin: (linkedin username)
   github: (github usernme)
 
-blog:
-  hide_categories: false
-  disabled: false
 
+# Configuration for navigation behavior
+# NB: external links are managed in /_data/navigation.yml
+navigation:
+  pages_disabled: false
+  hide_blog: false
+  hide_blog_tags: false
+  hide_blog_categories: false
+  tag_count: 5
+  category_count: 5
 
 collections:
   posts:
     title: "Blog"
     layout: post
-    menu_exclude: true
-  blog:  # tags & categories index pages
-    layout: blog
-    output: true
+    menu: false
   hidden:
     layout: page
-    menu_exclude: true
+    menu: false
     hidden: true
     output: true
+
+
+
+defaults:
+  - scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "post"
+      hidden: false
+      seo_title: null
+      menu: false
+  
+  - scope:
+      path: "" # an empty string here means all files in the project
+      type: "pages"
+    values:
+      layout: "page"
+      hidden: false
+      seo_title: null
+      menu: false
+
+  - scope:  # this rule prevents blog listing pages from registering in nav menu
+      path: "blog"
+      type: "pages"
+    values:
+      hidden: false
+      seo_title: null
+      menu: false
+    
+  - scope:
+      path: "pages"
+      type: "pages"
+    values:
+      layout: "page"
+      hidden: false
+      seo_title: null
+      menu: true
+
+    
+  - scope:
+      path: "404.html"
+    values:
+      menu: false
+      hidden: true
 
 
 markdown: kramdown
@@ -51,33 +99,6 @@ highlighter: rouge
 rouge:
   css_class: "codehilite"
   scope: ".codehilite"
-
-
-defaults:
-  - scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts" # previously `post` in Jekyll 2.2.
-    values:
-      layout: "post"
-      hidden: false
-      seo_title: null
-      menu: false
-
-  - scope:
-      path: "" # an empty string here means all files in the project
-      type: "pages" # previously `post` in Jekyll 2.2.
-    values:
-      layout: "page"
-      hidden: false
-      seo_title: null
-      menu: true
-
-  - scope:  # this rule prevents blog listing pages from registering in nav menu
-      path: "blog/"
-    values:
-      hidden: false
-      seo_title: null
-      menu: false
 
 
 plugins:
