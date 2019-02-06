@@ -3,9 +3,9 @@ layout: default
 title: Blog Tags
 body_class: tag-listing
 permalink: /blog/tag/
+menu: false
 ---
 
-{% include header.html %}
 
 {% for tag in site.tags %}
 {% assign tagname = tag | first %}

@@ -1,19 +1,16 @@
-{% assign related_posts = "" | split: "," %}
-{% assign post = include.post | default: page %}
+{% assign per_tag_limit = include.limit | default: 100 %}
 
-
-{% for tag in post.tags %}
-{% if site.tags[tags] %}
-{{ site.tags[tag] | inspect }}
-
+<ol class="related-posts">
+{% for p in site.related_posts limit:per_tag_limit %}
+{% assign count_tags_common = 0 %}
+{% for t in p.tags %}
+{% if page.tags contains t %}
+{% assign count_tags_common = count_tags_common | plus: 1 %}
 {% endif %}
 {% endfor %}
-
-{% assign related_posts = related_posts | where_exp: "p", "p.url != page.url" | uniq %}
-
-<ul class="related-posts">
-    <!-- showing up to {{ include.limit | default: "<unlimited>" }} posts -->
-{% for p in related_posts limit:include.limit %}
+{% if count_tags_common < 1 %}
+{% continue %}
+{% endif %}
 <li class="post related"><a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a></li>    
 {% endfor %}
-</ul> 
+</ol> 

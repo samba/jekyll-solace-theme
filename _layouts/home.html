@@ -10,7 +10,7 @@ menu: true
 {% if page.date %}
 {% unless page.metadata == false %}
 <aside class='row meta thin'>
-{% include post-meta.html class="container" %}
+{% include post-meta.html class="container" show_categories=false show_tags=true %}
 </aside>
 {% endunless %}
 {% endif %}

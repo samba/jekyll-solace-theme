@@ -1,16 +1,7 @@
 
     {% if paginator.posts %}
     {% for page in paginator.posts %}
-        <article class="post article row">
-            <div class="container">
-            <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
-            {% include post-meta.html %}
-            <span class='excerpt'>
-                {{ page.excerpt | markdownify | truncatewords: 60 }}
-            </span>
-            <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
-            </div>
-        </article>
+    {% include post.html page=page %}
     {% endfor %}
 
 
@@ -21,18 +12,8 @@
     </div>
 
     {% else %}
-    <!-- PAGINATOR IS NOT WORKING -->
     {% for page in site.posts limit:100 %}
-        <article class="post article row">
-            <div class="container">
-            <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
-            {% include post-meta.html %}
-            <span class='excerpt'>
-                {{ page.excerpt | markdownify | truncatewords: 60 }}
-            </span>
-            <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
-            </div>
-        </article>
+    {% include post.html page=page %}
     {% endfor %}
     {% endif %}
 

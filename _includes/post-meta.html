@@ -1,25 +1,34 @@
-<div class="publish date {{include.class}}">
-    <span class="avoidwrap">
+{% assign page = include.page | default: page %}
+
+{% if include.author == blank %}
+{% assign author = site.data.authors[page.author] | default: site.author %}
+{% else %}
+{% assign author = include.author %}
+{% endif %}
+
+{% assign authslug = author.name | slugify %}
+{% assign authorurl = "/blog/author/#" | append: authslug | prepend: site.baseurl %}
+
+
+<div class="publish meta {{include.class}}">
     Published
-    <time class='post timestamp' datetime='{{ page.date | default: site.time | date: "%F %T %Z" }}'>
-        {{page.date | default: site.time | date_to_string }}
-    </time>
+    {% unless include.show_author == false %}
+    <span class="author {{ authslug }} avoidwrap">
+        by <a href="{{ author.web | default: authorurl }}" class="author">{{ author.name }}</a>
     </span>
-
-    {% if page.author or site.author.name %}
-    {% assign author = page.author | default: site.author.name %}
-    {% assign authslug = author | slugify %}
-    <span class="author {{ authslug }} avoidwrap">by 
-        <a href="{{ "/author/#" | append: authslug | prepend: site.baseurl }}" class="author">{{ author }}</a></span>
-    {% endif %}
-
+    {% endunless %}
+    <span class="avoidwrap">
+        on <time class='post timestamp' datetime='{{ page.date | default: site.time | date: "%F %T %Z" }}'>
+            {{page.date | default: site.time | date_to_string }}
+        </time>
+    </span>
 </div>
 
 {% unless include.show_tags == false %}
 {% include post-tags.html %}
 {% endunless %}
 
-{% unless include.show_categories == false %}
+{% if include.show_categories == true %}
 {% include post-categories.html %}
-{% endunless %}
+{% endif %}
 

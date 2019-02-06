@@ -4,10 +4,10 @@ metadata: true
 related_limit: 15
 ---
 
-{% include header.html %}
+{% assign author = site.data.authors[page.author] | default: site.author %}
 
 <aside class='row meta thin'>
-{% include post-meta.html class="container" show_tags=false show_categories=false %}
+{% include post-meta.html class="container" show_tags=false show_categories=false author=author %}
 </aside>
 
 <article class="row">
@@ -17,7 +17,7 @@ related_limit: 15
 </article>
 
 <aside class="row">
-    <div class="containers">
+    <div class="container">
         {% include post-tags.html %}
     </div>
 </aside>

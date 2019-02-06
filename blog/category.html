@@ -3,9 +3,9 @@ layout: default
 title: Blog Categories
 body_class: category-listing
 permalink: /blog/category/
+menu: false
 ---
 
-{% include header.html %}
 
 {% for cat in site.categories %}
 {% assign catname = cat | first %}

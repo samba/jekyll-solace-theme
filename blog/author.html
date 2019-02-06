@@ -1,0 +1,18 @@
+---
+layout: page
+title: Blog Authors
+body_class: author-listing
+permalink: /blog/author/
+menu: false
+---
+
+{% assign posts_by_author = site.posts | group_by: "author" %}
+{% for pair1 in posts_by_author %}
+    {% assign author = site.data.authors[pair1.name] | default: site.author %}
+    <h2>{{ author.name }}</h2>
+
+    {% for post in pair1.items %}
+    {% include post.html post=post excerpt=true show_tags=true header="h3" show_author=false %}
+    {% endfor %}
+
+{% endfor %}

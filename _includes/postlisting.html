@@ -6,6 +6,12 @@
     {% assign posts = site.tags[include.tag] %}
 {% elsif include.sticky %}
     {% assign posts = site.posts | where: "sticky",include.sticky %}
+{% elsif include.author %}
+    {% if include.author == "site.author" %}
+    {% assign posts = site.posts | where: "author",nil %}
+    {% else %}
+    {% assign posts = site.posts | where: "author",author %}
+    {% endif %}
 {% else %}
     {% assign posts = site.posts %}
 {% endif %}
@@ -17,23 +23,9 @@
 {% endif %}
 
 
+{% assign posts = posts | uniq %}
+
 {% for page in posts limit:looplimit reversed %}
-<article class="post article row">
-    <div class="container">
-    <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
-    {% include post-meta.html class="meta" show_tags=include.show_tags show_categories=include.show_categories %}
-    {% if include.excerpt %}
-    <span class='excerpt'>
-        {% assign alt_excerpt = page.content | truncatewords: 60 %}
-        {{ page.excerpt | default:alt_excerpt | markdownify  }}
-    </span>
-    <a class="readmore" href="{{ page.url | prepend: site.baseurl }}">Continue Reading</a>
-    {% elsif include.fullbody %}
-    <span class="post content">
-        {{ page.content | markdownify }}
-    </span>
-    {% endif %}
-    </div>
-</article>
+{% include post.html page=page fullbody=include.fullbody excerpt=include.excerpt %}
 {% endfor %}
 

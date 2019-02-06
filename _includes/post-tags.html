@@ -1,3 +1,4 @@
+{% assign page = include.page | default: page %}
 {% assign count_tags = page.tags | size %}
 {% if count_tags > 1 %}
 <div class="post tags {{include.class}} meta">
