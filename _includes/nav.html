@@ -16,26 +16,32 @@
             <ul>
 
             {% assign pages = site.pages %}
-            {% assign hidden = "hidden,blog" | split: "," %}
+
 
             {% if site.navigation.pages %}
             {% assign pages = site.navigation.pages %}
             {% endif %}
 
+            {% assign home = pages | where: "path", "index.html" %}
             {% assign pages = pages | where_exp: "p", "p.title != blank" %}
+            {% assign pages = home | concat: pages %}
            
 
             {% assign pages = pages | sort: "url" %}
             {% for page in pages %}
+                {% assign is_root = (page.path == "index.html") %}
+                {% unless page.menu == false or page.hidden %}
 
-                {% unless hidden contains page.collection or page.menu == false %}
-                {% if page.title %}
+                {% if is_root %}
+                {% assign title_default = page.title | default: site.title %}
+                {% endif %}
+               
                 <li class="page">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
-                        {{ title_default | default: page.menu_title | default: page.title | default: col_meta.title | default: "(untitled)" }}
+                        {{ title_default | default: page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
                 </li>
-                {% endif %}
+
                 {% endunless %}
             {% endfor %}
             </ul>
