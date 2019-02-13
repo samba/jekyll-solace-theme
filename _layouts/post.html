@@ -2,25 +2,15 @@
 layout: default
 metadata: true
 related_limit: 15
+body_class: post
 ---
 
-{% assign author = site.data.authors[page.author] | default: site.author %}
 
-<aside class='row meta thin'>
-{% include post-meta.html class="container" show_tags=false show_categories=false author=author %}
-</aside>
+{% include post-main.html post=page %}
 
-<article class="row">
-<div class="container post">
-{{ content | markdownify }}
-</div>
-</article>
 
-<aside class="row">
-    <div class="container">
-        {% include post-tags.html %}
-    </div>
-</aside>
+
+
 
 {% assign count_tags = page.tags | size %}
 {% if count_tags > 0 %}

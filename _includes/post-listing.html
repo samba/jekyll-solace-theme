@@ -1,5 +1,4 @@
 
-
 {% if include.category %}
     {% assign posts = site.posts | where_exp: "p","p.categories contains include.category" %}
 {% elsif include.tag %}
@@ -23,9 +22,18 @@
 {% endif %}
 
 
+
 {% assign posts = posts | uniq %}
 
-{% for page in posts limit:looplimit reversed %}
-{% include post.html page=page fullbody=include.fullbody excerpt=include.excerpt %}
+{% for post in posts limit:looplimit reversed %}
+{% if include.fullbody %}
+{% include post-main.html post=post header=include.header class=include.class %}
+{% else %}
+{% include post-excerpt.html post=post readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+{% endif %}
 {% endfor %}
+
+
+
+
 

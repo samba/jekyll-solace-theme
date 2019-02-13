@@ -1,0 +1,56 @@
+
+
+
+{% assign post = include.post | default: include.page | default: page %}
+{% assign author = site.data.authors[post.author] | default: site.author %}
+{% assign authslug = author.name | slugify %}
+{% assign authorurl = "/blog/author/#" | append: authslug | prepend: site.baseurl %}
+{% assign readmore = include.readmore | default: "Continue Reading" %}
+{% assign count_tags = post.tags | size %}
+{% assign header_tag = include.header | default: "h2" %}
+
+<article class="excerpt {{ include.class }}">
+    <header>
+        <{{ header_tag }}><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></{{ header_tag }}>
+    </header>
+
+    {% unless include.show_meta == false %}
+    <aside  class="publication-data">
+        <span class="avoidwrap">
+            Published 
+        <time class='post timestamp' datetime='{{ post.date | default: site.time | date: "%F %T %Z" }}'>
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | default: site.time | date_to_string }}</a>
+        </time>
+        </span>
+        {% unless author == site.author %}
+        <span class="author {{ authslug }} avoidwrap">
+            by <a href="{{ author.web | default: authorurl }}" class="author">{{ author.name }}</a>
+        </span>
+        {% endunless %}
+
+
+        {% unless include.show_tags == false %}
+        {% if count_tags > 0 %}
+        <ul class="tags">
+            {% for tag in post.tags %}
+            {% assign tagurl = "/blog/tag/#" | append: tagslug | prepend: site.baseurl %}
+            <li><a href="{{ tagurl }}" class="tag">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endunless %}
+
+    </aside>
+    {% endunless %}
+
+
+    <section class="post article excerpt">
+    {{ post.excerpt | markdownify }}
+    <a class="readmore" href="{{ post.url | prepend: site.baseurl }}">{{ readmore }}</a>
+    </section>
+
+
+</article>
+
+
+

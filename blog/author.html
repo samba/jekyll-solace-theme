@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Blog Authors
-body_class: author-listing
+body_class: author-listing blog
 permalink: /blog/author/
 menu: false
 ---
@@ -9,10 +9,11 @@ menu: false
 {% assign posts_by_author = site.posts | group_by: "author" %}
 {% for pair1 in posts_by_author %}
     {% assign author = site.data.authors[pair1.name] | default: site.author %}
+    <section data-author-name="{{ author.name }}">
     <h2>{{ author.name }}</h2>
 
     {% for post in pair1.items %}
-    {% include post.html post=post excerpt=true show_tags=true header="h3" show_author=false %}
+    {% include post-excerpt.html post=post show_author=false %}
     {% endfor %}
-
+    </section>
 {% endfor %}

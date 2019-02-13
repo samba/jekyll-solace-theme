@@ -3,65 +3,175 @@
  */
 
 
+$alternating-class: '.alt-dark' !default;
 
+%metadata {
+    font-style: italic;
+    color: $grey-color;
+}
 
 body {
 
-    div.post {
-
-        a.tag {
-            // font-size: 1rem;
-            display: inline-block;
-            // border: 1px $brand-color-dark solid;
-            // border-radius: 0.25rem;
-            // background-color: $text-background-highlight;
-            color: $text-color-brand;
-            // padding: 0.25rem;
-        }
-
-        span.meta-label {
-            font-style: italic;
-        }
-        
-    }
-
-    div.blog {
-
-        article {
+    &.blog, &.post {
     
-            &.post {
-    
-                a.readmore {
-                    font-style: italic;
-                    color: $text-color-shade;
-                }
-    
+        aside.publication-data {
+            position: relative;
+            @extend %row;
+            
+            span.avoidwrap {
+                @extend %clearfix;
+                float: left;
+                margin-right: 1rem;
+                margin-bottom: 0.25rem;
+                display: block;
             }
     
+
+            ul.tags {
+                @extend %list-no-break;
+                @extend %clearfix;
+                // margin: 0.25rem;
+                margin: 0;
+
+                @include large {
+                    position: absolute;
+                    // top: -0.5rem;
+                    top: 0.25rem;
+                }
+
+                li {
+                    margin-left: 0.5rem;
+                }
+
+                @include medium-small {
+                    clear: both;
+                    float: left;
+                    li {
+                        margin-left: 0.25rem;
+                        margin-right: 0.15rem;
+                        margin-top: 0.25rem;
+                    }
+                }
+            }
+        }
+
+        a.tag {
+        
+            display: inline-block;
+            text-decoration: none;
+            border: 1px $brand-color-dark solid;
+            border-radius: 0.25rem;
+            
+            color: $text-color-brand;
+            padding: 0.25rem;
+
+            font-size: 0.6em;
+
+            &:hover {
+                background-color: $text-background-highlight;
+            }
+
+            @include small {
+                font-size: 0.75em;
+            }
+        }
+
+        a.readmore {
+            font-style: italic;
+            color: $text-color-shade;
+        }
+	
+    }
+
+
+    header {
+        h1, h2, h3, h4, h5 {
+            font-weight: 500;
+        }
+    }
+
+    // Allow alternating sections to toggle their background colors.
+    #{$alternating-class} {
+        background-color: $background-color;
+        color: $text-color;
+
+        &:nth-child(even) {
+            @media only screen {
+                background-color: $background-dark;
+                color: $text-color-light;
+                
+                a {
+                    color: $brand-color;
+                }
+            }
+        }
+    }
+
+
+    main {
+        @extend %row;
+        
+        header, section, article, footer, aside {
+            @extend %container;
+        	@extend %autosize-content;
+
+            margin: {
+                top: 0.5rem;
+                bottom: 0.5rem;
+            }
+        }
+
+    
+        header, footer, article {
+            .publication-data {
+                @extend %metadata;
+            }
+        }
+
+        section, article {
+            & > {
+                header, section, aside, footer {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        article {
+            margin-bottom: 3rem;
+        }
+
+        & > header, 
+        & > footer, 
+        & > article,
+        & > section {
+            @extend %autosize-content;
+            @include medium-small {
+                margin-left: 0.25rem;
+                margin-right: 0.25rem;
+            }
+        }
+
+        // first header of the page
+        & > header {
+            margin-bottom: 2rem;
+
+            @include medium-small {
+                min-height: 3rem;
+                margin-top: 0.75rem;
+                margin-bottom: 0.5rem;
+                // font-size: 2rem;
+            }
+        }
+
+
+        > footer:last-of-type {
+            padding-top: 4rem;
+            padding-bottom: 1rem;
         }
     
-    }
-
-
-    span.meta-label {
-        display: inline-block;
-    }
-
-    &.layout-post {
-        div.post.categories {
-            display: none;
-        }
-
-        span.meta-label {
-            // display: none;
-        }
-    }
-
-    &.layout-blog {
 
     }
 
-    &.layout-home {
 
-    }
 }

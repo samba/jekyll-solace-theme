@@ -1,7 +1,7 @@
 
     {% if paginator.posts %}
     {% for page in paginator.posts %}
-    {% include post.html page=page excerpt=include.excerpt fullbody=include.fullbody show_tags=include.show_tags show_categories=include.show_categories %}
+    {% include post-main.html post=page class=include.class excerpt=include.excerpt fullbody=include.fullbody show_tags=include.show_tags header=include.header %}
     {% endfor %}
 
 
@@ -13,7 +13,7 @@
 
     {% else %}
     {% for page in site.posts limit:100 %}
-    {% include post.html page=page %}
+    {% include post-main.html post=page class=include.class %}
     {% endfor %}
     {% endif %}
 

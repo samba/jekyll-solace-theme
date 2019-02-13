@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Blog Tags
-body_class: tag-listing
+body_class: tag-listing blog
 permalink: /blog/tag/
 menu: false
 ---
@@ -12,7 +12,7 @@ menu: false
 <section class="row tag-listing {{ tagname | slugify }}" data-tag-slug="{{ tagname | slugify }}">
     <div class='container'>
 <h2 id="{{ tagname | slugify }}">Posts tagged <em>{{ tagname }}</em></h2>
-{% include postlisting.html tag=tagname excerpt=true show_tags=false %}
+{% include post-listing.html tag=tagname excerpt=true show_tags=false %}
 </div>
 </section>
 {% endfor %}

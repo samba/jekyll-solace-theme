@@ -17,36 +17,31 @@ hidden: false
 		{% include nav.html %}
 		
 
-		<div id='bodywrapper'>
+		<main>
 		{% assign pagetitle = page.title | default: site.title %}
 		{% include header.html title=pagetitle %}
 
 
-            	{{content}}
+        {{content}}
 
-		<footer class="row bottom">
-		{% include footer.html %}
-		<div class="container vcenter center">
-			<p>
-			<span class="copyright meta small">
+		<footer class="bottom">
+		<div class="vcenter center">
+
+			<p class="copyright meta small">
 			&copy; {{ page.author | default: site.author.name }},
 				{{ page.date | default: site.time | date: "%Y" }}. 
 				All Rights Reserved.
-			</span>
+			</p>
 
-			<span class='print-only small'>
+			<p class='print-only small'>
 			Retrieved from &lt;{{site.url}}{{page.url}}&gt;.
-			</span>
 			</p>
 
 			<p><a class="home meta small" href="{{ "/" | relative_url }}">{{ site.title }}</a></p>
 		</div>
-		<div class="container no-print vcenter center">
-			
-		</div>
 		</footer>
 
-		</div>
+		</main>
 
 
 	</body>

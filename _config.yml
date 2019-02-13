@@ -44,7 +44,7 @@ defaults:
     values:
       layout: "post"
       hidden: false
-      seo_title: null
+      body_class: post
       menu: false
   
   - scope:
@@ -61,11 +61,11 @@ defaults:
       type: "pages"
     values:
       hidden: false
-      seo_title: null
+      body_class: blog
       menu: false
     
   - scope:
-      path: "pages"
+      path: "pages" # pages under the /pages/ directory
       type: "pages"
     values:
       layout: "page"

@@ -1,0 +1,266 @@
+// References
+// http://stephen.io/mediaqueries/
+
+
+$content-width: 40em !default;
+
+$pixels-per-em: 16px;
+
+$large-breakpoint: (1.6 * $content-width * $pixels-per-em) !default;
+$medium-breakpoint: (($content-width + 2rem) * $pixels-per-em) !default;
+
+
+$tablet-width: 992px !default;
+$phone-width: 700px !default;
+
+
+
+$inset-depth: 1em !default;
+$inset-radius: 0.25em !default;
+
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+@mixin large {
+    @media screen and (min-width: $large-breakpoint) {
+        @content;
+    }
+}
+
+@mixin medium-large {
+    @media screen and (min-width: $medium-breakpoint) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media screen and (max-width: $large-breakpoint) and (min-width: $medium-breakpoint) {
+        @content;
+    }
+}
+
+@mixin small {
+    @media screen and (max-width: $medium-breakpoint) {
+        @content;
+    }
+}
+
+@mixin medium-small {
+	@media screen and (max-width: $large-breakpoint) {
+        @content;
+    }
+}
+
+
+@mixin retina125 {
+	/* 1.25 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.25),
+	(min-resolution: 120dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+@mixin retina20 {
+	@media
+	(-webkit-min-device-pixel-ratio: 2),
+	(min-resolution: 192dpi) {
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+@mixin retina13 {
+	/* 1.3 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.3),
+	(min-resolution: 124.8dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+@mixin retina15 {
+	/* 1.5 dpr */
+	@media
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-resolution: 144dpi){
+		/* Retina-specific stuff here */
+		@content;
+	}
+}
+
+
+
+
+@mixin tablet {
+	@media only screen and (max-width: $tablet-width){
+		/* Tablet and smaller */
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media only screen and (min-width: $tablet-width){
+		/* Desktop environments */
+		@content;
+	}
+}
+
+@mixin phone {
+	@media only screen and (max-device-width: $phone-width), (orientation: landscape) {
+		@content;
+	}
+	@media only screen and (max-device-height: $phone-width), (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin tinyphone {
+	@media (max-width: $phone-width), (orientation: portait){
+		/* Tiny phones, etc */
+		@content;
+	}
+}
+
+
+@mixin portrait {
+	@media (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin landscape {
+	@media (orientation: landscape) {
+		@content;
+	}
+}
+
+@mixin ipad {
+	@media only screen 
+	and (min-width : 768px) 
+	and (max-width : 1024px) {
+		@content;
+	}
+}
+
+@mixin ipad-retina {
+	@media only screen 
+	and (min-width : 768px) 
+	and (max-width : 1024px)
+	and (-webkit-min-device-pixel-ratio: 2) {
+		@content;
+	}
+}
+
+@mixin ipad-lowres {
+	@media only screen 
+	and (min-width : 768px) 
+	and (max-width : 1024px) 
+	and (-webkit-min-device-pixel-ratio: 1) {
+		@content;
+	}
+}
+
+@mixin iphonex {
+	@media only screen 
+	and (min-width : 375px) 
+	and (max-width : 812px)
+	and (-webkit-device-pixel-ratio : 3) {
+		@content;
+	}
+}
+
+@mixin iphone678 {
+	@media only screen 
+	and (min-width : 375px) 
+	and (max-width : 667px) {
+		@content;
+	}
+}
+
+@mixin iphone678plus {
+	@media only screen 
+	and (min-width : 414px) 
+	and (max-width : 736px) {
+		@content;
+	}
+}
+
+@mixin iphone5 {
+	@media only screen 
+	and (min-width : 320px) 
+	and (max-width : 568px) {
+		@content;
+	}
+}
+
+@mixin iphone234 {
+	@media only screen 
+	and (min-width : 320px) 
+	and (max-width : 480px) {
+		@content;
+	}
+}
+
+// @include ipad {
+// 	body {
+// 		border: 1px blue dotted;
+// 		@include landscape {
+// 			border: 1px green dotted;
+// 		}
+// 		@include portrait {
+// 			border: 1px red dotted;
+// 		}
+// 	}
+// }
+
+
+
+@mixin noprint {
+	@content;
+	@media print {
+		display: none;
+	}
+}
+
+@mixin printonly {
+	@content;
+	@media screen {
+		display: none;
+	}
+}
+
+@mixin print {
+    @media print { 
+        @content;
+	}
+}
+
+
+
+%autosize-content {
+	max-width: $content-width;
+
+	@include large {
+		max-width: $content-width;
+	}
+
+	@include medium {
+		max-width: $content-width;
+	}
+
+	@include small {
+		max-width: (0.9 * $content-width);
+	}
+
+}
+

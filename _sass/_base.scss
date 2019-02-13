@@ -1,9 +1,17 @@
 
+// Ensure that rem units are correctly calculated.
+html { 
+    @include medium-small {
+        font-size: calc(1em + 1vw) 
+    }
+}
+
 
 /**
  * Clearfix
  */
- %clearfix {
+ %clearfix, .clearfix {
+    display: block;
 
     &:after {
         content: "";
@@ -18,9 +26,6 @@
     }
 }
 
-.clearfix {
-    @extend %clearfix;
-}
 
 /**
  * Reset some basic elements
@@ -90,11 +95,11 @@ header {
         clear: none;
         margin: 0;
 
-        @include small{
+        @include small {
             clear: both;
             display: table-cell;
-            padding: 0;
-            font-size: 1.5rem;
+            // padding: 0;
+            font-size: 1.5em;
             margin-top: auto;
             margin-bottom: auto;
             vertical-align: middle;
@@ -109,7 +114,10 @@ header {
 /**
  * Lists
  */
- ul, ol {
+
+
+
+ul, ol {
     margin-left: $spacing-unit;
 }
 
@@ -120,7 +128,21 @@ li {
     }
 }
 
+%list-no-break, ul.nobreak, ol.nobreak {
+    display: inline-block;
+    margin-left: 1rem;
 
+    li {
+        display: inline-block;
+        float: left;
+        clear: none;
+        margin-left: 1rem;
+    }
+}
+
+
+
+/* Links */
 a[href] {
     &:link {
         color: $brand-color;
@@ -136,17 +158,21 @@ a[href] {
 body {
 
     font-family: $base-font-family;
-    font-size: $base-font-size;
+    font-size: $base-font-size * 1rem;
     word-spacing: 0.15rem;
     letter-spacing: 0.025rem;
 
+    @include small {
+        font-size: $base-font-size * 1.2rem;
+    }
 
     @include large {
         height: 100%;
+        font-size: $base-font-size * 1em;
     }
 
     .small {
-        font-size: $small-font-size;
+        font-size: $small-font-magnitude;
     }
 
 
@@ -180,4 +206,31 @@ body {
         }
 
     }
+}
+
+
+
+@mixin inset($depth: $inset-depth, $radius: $inset-radius) {
+	border: {
+		style: solid;
+		radius: $radius;
+		color: rgba(0, 0, 0, 0.25);
+		width: 1px;
+	}
+
+	box-shadow: ($depth/30) ($depth/30) ($depth/3) 0em rgba(0, 0, 0, 0.25) inset;
+
+	padding: ($radius);
+
+}
+
+@mixin boxset($depth: 1rem){
+	box-shadow: ($depth/30) ($depth/30) ($depth/3) 0em rgba(0, 0, 0, 0.25) inset;
+	border: {
+		style: solid;
+		radius: 0;
+		color: rgba(0, 0, 0, 0.25);
+		width: 1px 0 1px 0;
+	}
+	padding: $depth;
 }

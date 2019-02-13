@@ -5,17 +5,12 @@ menu: true
 ---
 
 
-{% if page.date %}
-{% unless page.metadata == false %}
-<aside class='row meta thin'>
-{% include post-meta.html class="container" %}
-</aside>
-{% endunless %}
-{% endif %}
 
-<div id="content" class='row'>
-<article class="container content {{page.content_class}}">
+<article class="content {{page.content_class}}">
 {{ content }}
 </article>
-</div>
 
+
+<footer>
+{% include footer.html %}
+</footer>

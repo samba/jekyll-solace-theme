@@ -8,28 +8,22 @@ body.nav-sidebar {
     $sidebar-font-family: $base-font-family-sans;
     $activator-color: $brand-color-dark;
     $activator-background: $background-color;
-    
+    $content-wrapper: "main";
+
+
     @import "sidebar";
     
-
-   
-    @include compressed {
-        // Offset the header to accommodate the navigation button.
-        header {
-            position: relative;
-            left: 2.5em;
-            width: calc(100% - 4em);
+    #{$content-wrapper} > header {
+        // Top header gets shifted to the right when the screen is condensed.
+        
+        @include small {
+            padding-left: 4rem;
         }
-    }
 
-       
-    @include medium {
-        // Offset the header to accommodate the navigation button.
-        header {
-            position: relative;
-            left: 2.5em;
-            width: calc(100% - 4em);
+        @include medium {
+            padding-left: 4rem;
         }
+
     }
 
 
@@ -38,7 +32,6 @@ body.nav-sidebar {
     nav a i.fa {
         position: relative;
         top: -0.2rem;
-        // font-size: 1rem;
     
         &.icon-dimmed {
             opacity: 0.5;

@@ -24,6 +24,8 @@ layout: null
     mq('(max-width: 64em) and (min-width: 48em)', mq_report('medium'));
     mq('(max-width: 48em)', mq_report('small'));
     mq('(max-width: 40em)', mq_report('compressed'));
+    mq('(min-height: 40em)', mq_report('vertically spacious'));
+    mq('(max-height: 40em)', mq_report('vertically compressed'));
 
 
     function applyHeader(text){
