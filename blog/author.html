@@ -9,7 +9,7 @@ menu: false
 {% assign posts_by_author = site.posts | group_by: "author" %}
 {% for pair1 in posts_by_author %}
     {% assign author = site.data.authors[pair1.name] | default: site.author %}
-    <section data-author-name="{{ author.name }}">
+    <section data-author-name="{{ author.name }}" data-anchor-slug="{{ pair1.name | slugify }}">
     <h2>{{ author.name }}</h2>
 
     {% for post in pair1.items %}
