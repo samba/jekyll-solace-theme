@@ -9,6 +9,7 @@ body.nav-sidebar {
     $activator-color: $brand-color-dark;
     $activator-background: $background-color;
     $content-wrapper: "main";
+    $sidebar-width: 17rem;
 
 
     @import "sidebar";
