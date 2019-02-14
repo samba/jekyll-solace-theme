@@ -16,10 +16,22 @@
 
 ## Installation for GitHub Pages
 
-1. Add `gem "jekyll-solace-theme"` to your `Gemfile` to track the dependency
-2. Add `jekyll-remote-theme` to the list of `plugins` in your `_config.yml` file
-3. Add `remote_theme: samba/jekyll-solace-theme` to your `_config.yml` file to set the site theme
-4. Run `bundle exec jekyll serve` to build and serve your site
+For new sites:
+
+1. Add `gem "jekyll-remote-theme"` to your `Gemfile` to track the dependency.
+2. Copy this project's [_config.yml](./_config.yml) to your site.
+3. Uncomment line 6 in your site's copy of `_config.yml`.
+4. Run `bundle exec jekyll serve` to build and serve your site.
+
+For existing sites, the following parts of [_config.yml](./_config.yml) should be copied:
+
+1. `remote_theme` (commented out in default, must be uncommented)
+2. `navigation` 
+3. `titles_from_headings`
+4. `paginate`, `paginate_path`, and `permalink`
+5. `defaults` section
+
+All of these settings should be customizable as you see fit, however the theme code expects/requires them to be present.
 
 
 ## Adding Pages in the Navigation menu
