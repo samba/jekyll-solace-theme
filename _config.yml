@@ -28,8 +28,13 @@ navigation:
 # NB: https://github.com/benbalter/jekyll-titles-from-headings
 titles_from_headings:
   enabled:     true                         # if pages provide an H1 header, but no page.title, automatically use it
-  strip_title: false
+  strip_title: true
   collections: false
+
+# Parse all Markdown files as pages, and interpolate missing frontmatter.
+optional_front_matter:
+  enabled:          true                     # disable here if desired
+  remove_originals: true
 
 # If the site has a README, generate <index.html> from it.
 readme_index:
@@ -125,10 +130,14 @@ plugins:
 - jekyll-redirect-from
 - jekyll-default-layout
 - jekyll-titles-from-headings
+- jekyll-optional-front-matter
 - jekyll-readme-index
 - jekyll-feed
 - rouge
 - kramdown
+
+include:
+- README.md
 
 exclude:
 - CNAME
