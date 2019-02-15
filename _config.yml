@@ -31,6 +31,12 @@ titles_from_headings:
   strip_title: false
   collections: false
 
+# If the site has a README, generate <index.html> from it.
+readme_index:
+  enabled:          true                     # disable here if desired
+  remove_originals: true
+
+
 collections:
   posts:
     title: "Blog"
@@ -119,15 +125,16 @@ plugins:
 - jekyll-redirect-from
 - jekyll-default-layout
 - jekyll-titles-from-headings
+- jekyll-readme-index
 - jekyll-feed
 - rouge
 - kramdown
 
 exclude:
-- README.md
 - CNAME
 - Gemfile
 - Gemfile.lock
 - jekyll-solace-theme.gemspec
 - Makefile
 - util/*
+- DOCKER_ENV*

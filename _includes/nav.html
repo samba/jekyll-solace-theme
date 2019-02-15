@@ -22,21 +22,23 @@
             {% assign pages = site.navigation.pages %}
             {% endif %}
 
-            {% assign home = pages | where: "path", "index.html" %}
+            {% assign home_paths = "home.html|index.html|README.md" | split: "|" %}
+            {% assign home = pages | where_exp: "p", "home_paths contains p.path" %}
             {% assign pages = pages | where_exp: "p", "p.title != blank" %}
             {% assign pages = home | concat: pages %}
            
+            
 
-            {% assign pages = pages | sort: "url" %}
+            {% assign pages = pages | uniq | sort: "url" %}
             {% for page in pages %}
-                {% assign is_root = (page.path == "index.html") %}
+                {% assign is_root = (home_paths contains page.path) %}
                 {% unless page.menu == false or page.hidden %}
 
                 {% if is_root %}
                 {% assign title_default = page.title | default: site.title %}
                 {% endif %}
                
-                <li class="page">
+                <li class="page" data-page-path="{{ page.path }}">
                     <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
                         {{ title_default | default: page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
