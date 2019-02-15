@@ -47,6 +47,9 @@ readme_index:
   remove_originals: true
 
 
+# If this site is for a GitHub repository, update this and uncomment it:
+# repository: username/repo-name
+
 collections:
   posts:
     title: "Blog"
@@ -141,6 +144,7 @@ plugins:
 - jekyll-default-layout
 - jekyll-titles-from-headings
 - jekyll-optional-front-matter
+- jekyll-github-metadata
 - jekyll-readme-index
 - jekyll-feed
 - rouge
