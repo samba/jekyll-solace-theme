@@ -23,7 +23,7 @@
         </span>
         {% unless author == site.author %}
         <span class="author {{ authslug }} avoidwrap">
-            by <a href="{{ author.web | default: authorurl }}" class="author">{{ author.name }}</a>
+            by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
         </span>
         {% endunless %}
 
