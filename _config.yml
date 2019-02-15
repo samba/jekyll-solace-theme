@@ -37,11 +37,13 @@ titles_from_headings:
   collections: false
 
 # Parse all Markdown files as pages, and interpolate missing frontmatter.
+# NOTE: this *may* conflict with readme_index options, when `include` list contains README.md
 optional_front_matter:
   enabled:          true                     # disable here if desired
   remove_originals: true
 
 # If the site has a README, generate <index.html> from it.
+# NOTE: if the `include` list below includes README.md, this plugin stops working.
 readme_index:
   enabled:          true                     # disable here if desired
   remove_originals: true
@@ -147,17 +149,17 @@ plugins:
 - jekyll-seo-tag
 - jekyll-redirect-from
 - jekyll-default-layout
-- jekyll-titles-from-headings
-- jekyll-optional-front-matter
 - jekyll-relative-links
 - jekyll-github-metadata
 - jekyll-readme-index
+- jekyll-titles-from-headings
+- jekyll-optional-front-matter
 - jekyll-feed
 - rouge
 - kramdown
 
-include:
-- README.md
+# include:
+# - README.md
 
 exclude:
 - CNAME

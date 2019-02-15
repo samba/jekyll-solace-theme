@@ -55,4 +55,10 @@ __Other notes__:
 - Jekyll [basically distinguishes `posts` by their origin in `_posts` directory][1]. Posts are not included in the menu.
 
 
+## Known Issues
+
+- The `jekyll-readme-index` does not render `index.html` correctly when the `include` list in `_config.yml` contains `README.md`. Seemingly, this may be due to `jekyll-optional-front-matter` converting it to `README.html` too early.
+
+
 [1]: https://ben.balter.com/2015/02/20/jekyll-collections/
+
