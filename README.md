@@ -40,7 +40,7 @@ All of these settings should be customizable as you see fit, however the theme c
 
 By default, this theme supports `jekyll-readme-index`, so the homepage can be generated from an undecorated `README.md` file (such as this). This **does not** provide the recommended blog reading experience.  
 
-If you wish to provide your own home page, you can start by copying `home.html` to `index.html`. This page relies on the [`home` layout][./_layouts/home.html], which provides the _three_ most-recent blog posts.
+If you wish to provide your own home page, you can start by copying `home.html` to `index.html`. This page relies on the [`home` layout](./_layouts/home.html), which provides the _three_ most-recent blog posts.
 
 ## Adding Pages in the Navigation menu
 
