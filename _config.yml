@@ -101,6 +101,11 @@ defaults:
       menu: true
     
   - scope:
+      path: "assets/**/*.pdf"
+    values:
+      sitemap: false  # do not include them in the sitemap
+  
+  - scope:
       path: "404.html"
     values:
       menu: false
