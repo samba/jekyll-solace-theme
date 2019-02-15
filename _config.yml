@@ -12,6 +12,11 @@ author:
   linkedin: (linkedin username)             # change me
   github: (github usernme)                  # change me
 
+# Which service should @mentions reference?
+jekyll-mentions:
+  base_url: https://twitter.com
+# alternative:  base_url: https://github.com
+
 
 # Configuration for navigation behavior
 # NB: external links are managed in /_data/navigation.yml
