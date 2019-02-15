@@ -47,6 +47,11 @@ readme_index:
   remove_originals: true
 
 
+# Automatically resolve relative links correctly, to the generated output files.
+relative_links:
+  enabled:     true
+  collections: false
+
 # If this site is for a GitHub repository, update this and uncomment it:
 # repository: username/repo-name
 
@@ -144,6 +149,7 @@ plugins:
 - jekyll-default-layout
 - jekyll-titles-from-headings
 - jekyll-optional-front-matter
+- jekyll-relative-links
 - jekyll-github-metadata
 - jekyll-readme-index
 - jekyll-feed
