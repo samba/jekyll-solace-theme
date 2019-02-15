@@ -23,13 +23,10 @@
             {% endif %}
 
             {% assign home_paths = "home.html|index.html|README.md" | split: "|" %}
-            {% assign home = pages | where_exp: "p", "home_paths contains p.path" %}
-            {% assign pages = pages | where_exp: "p", "p.title != blank" %}
-            {% assign pages = home | concat: pages %}
-           
+            {% assign home = pages | where_exp: "p", "home_paths contains p.path" | uniq %}
             
-
             {% assign pages = pages | uniq | sort: "url" %}
+            {% assign pages = home | concat: pages | uniq %}
             {% for page in pages %}
                 {% assign is_root = (home_paths contains page.path) %}
                 {% unless page.menu == false or page.hidden %}
