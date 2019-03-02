@@ -1,6 +1,23 @@
 
+{% assign recent = include.recent | default: 3 %}
+
+
+{% unless site.home.blog.enabled == false %}
+
+{% unless site.home.blog.pinned.enabled == false %}
+{% if site.home.blog.pinned.display_mode == "fullbody" %}
+{% include post-listing.html sticky=true fullbody=true show_tags=true header="h2" class="sticky" %}
+{% elsif site.home.blog.pinned.display_mode == "excerpt" %}
 {% include post-listing.html sticky=true excerpt=true show_tags=true header="h2" class="sticky" %}
+{% endif %}
+{% endunless %}
 
-
+{% unless site.home.blog.recent.enabled == false %}
+{% if site.home.blog.recent.display_mode == "fullbody" %}
 {% include post-listing.html recent=3 fullbody=true show_tags=true header="h2" class="recent" %}
+{% elsif site.home.blog.recent.display_mode == "excerpt" %}
+{% include post-listing.html recent=recent excerpt=true show_tags=true header="h2" class="recent" %}
+{% endif %}
+{% endunless %}
 
+{% endunless %}

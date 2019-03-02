@@ -1,18 +1,3 @@
 ---
-layout: default
-title: Blog Categories
-body_class: category-listing blog
-permalink: /blog/category/
-menu: false
+layout: blog-index-categories
 ---
-
-
-{% for cat in site.categories %}
-{% assign catname = cat | first %}
-<section class="row category-listing {{ catname | slugify }}" data-anchor-slug="{{ catname | slugify }}">
-    <div class="container">
-<h2 id="{{ catname | slugify }}">{{ catname }}</h2>
-{% include post-listing.html category=catname excerpt=true %}
-</div>
-</section>
-{% endfor %}

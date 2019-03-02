@@ -1,18 +1,3 @@
 ---
-layout: default
-title: Blog Tags
-body_class: tag-listing blog
-permalink: /blog/tag/
-menu: false
+layout: blog-index-tags
 ---
-
-
-{% for tag in site.tags %}
-{% assign tagname = tag | first %}
-<section class="row tag-listing {{ tagname | slugify }}" data-anchor-slug="{{ tagname | slugify }}">
-    <div class='container'>
-<h2 id="{{ tagname | slugify }}">Posts tagged <em>{{ tagname }}</em></h2>
-{% include post-listing.html tag=tagname excerpt=true show_tags=false %}
-</div>
-</section>
-{% endfor %}

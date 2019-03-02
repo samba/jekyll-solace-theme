@@ -29,6 +29,19 @@ navigation:
   category_count: 5                         # how many recent categories to show in the nav panel
 
 
+# Configuration for the listing of recent blog posts on home layout. 
+# (_layouts/home-blog-sections.html)
+home:
+  blog:
+    enabled: true
+    pinned:
+      # enabled: true
+      display_mode: excerpt                 # options are "fullbody" or "excerpt". 
+    recent:
+      # enabled: true
+      display_mode: fullbody                 # options are "fullbody" or "excerpt". 
+
+
 # Automatically infer title values from page content if needed
 # NB: https://github.com/benbalter/jekyll-titles-from-headings
 titles_from_headings:
