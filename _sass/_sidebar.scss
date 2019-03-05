@@ -7,8 +7,8 @@ $sidebar-wrapper: 'div.navigation.sidebar' !default;
 $sidebar-activator: 'input#nav-checkbox' !default;
 $sidebar-control: 'label[for="nav-checkbox"]' !default;
 
-$sidebar-width: 18rem !default;
-$sidebar-font-size: (0.9rem) !default;
+$sidebar-width: 18em !default;
+$sidebar-font-size: (1.1rem) !default;
 $sidebar-font-family: "Arial" !default;
 $sidebar-background: black !default;
 $sidebar-font-color: rgba(255,255,255,0.6) !default;
@@ -23,6 +23,7 @@ $activator-background: #fff !default;
 $activator-border-mobile: transparentize($activator-color, 0.25);
 
 $navcolumn-width: 30em !default;
+$copyright-font-size: 1em !default;
 
 #{$content-wrapper} {
 	position: relative;
@@ -66,6 +67,7 @@ $navcolumn-width: 30em !default;
   bottom: 0;
   left: (-1 * $sidebar-width);
   width: $sidebar-width;
+  max-width: 90%;
   visibility: hidden;
   overflow-y: auto;
   font-family: $sidebar-font-family;
@@ -76,10 +78,17 @@ $navcolumn-width: 30em !default;
           transition: all .3s ease-in-out;
 
 
+  // @include small {
+  //   font-size: $sidebar-font-size * 0.9;
+  // }
 
-  @media (min-width: $navcolumn-width) {
-    font-size: .75rem; /* 14px */
-  }
+  // @include small {
+  //   width: $sidebar-width-small;
+  // }
+
+  // @media (min-width: $navcolumn-width) {
+  //   font-size: .75rem; /* 14px */
+  // }
 
   @media print {
     display: none !important;
@@ -103,6 +112,14 @@ $navcolumn-width: 30em !default;
 
 	& > em, a, p {
     font-size: $sidebar-font-size;
+
+    @include medium {
+      font-size: 0.9 * $sidebar-font-size;
+    }
+
+    @include small {
+      font-size: 1 * $sidebar-font-size;
+    }
 
     &:not(.naturalcase) {
       text-transform: uppercase;
@@ -140,9 +157,12 @@ $navcolumn-width: 30em !default;
 
   &.copyright {
     margin: 1rem;
+    font-size: $copyright-font-size;
+    em {
+      font-size: $copyright-font-size;
+    }
   }
 }
-
 
 
 
@@ -219,12 +239,8 @@ $navcolumn-width: 30em !default;
     border: 0.125rem $activator-border-mobile solid;
   }
 
-  @media (min-width: $navcolumn-width) {
-      // position: fixed;
-      // width: 2.25rem;
-  }
 
-  & {  // Visual improvement
+  & {  // give the icon a little more room...
   	padding: 0.5rem .65rem;
   	text-align: center;
   }
@@ -270,6 +286,9 @@ $navcolumn-width: 30em !default;
   z-index: 10;
   visibility: visible;
 }
+
+// Governs the placment of the activated control icon.
+// TODO: adjust the conversion when the sidebar width is varied
 #{$sidebar-activator}:checked ~ #{$sidebar-wrapper},
 #{$sidebar-activator}:checked ~ #{$content-wrapper},
 #{$sidebar-activator}:checked ~ #{$sidebar-control} {

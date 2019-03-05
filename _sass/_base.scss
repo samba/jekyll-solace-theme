@@ -162,8 +162,12 @@ body {
     word-spacing: 0.15rem;
     letter-spacing: 0.025rem;
 
-    @include small {
+    @include medium {
         font-size: $base-font-size * 1.2rem;
+    }
+
+    @include small {
+        font-size: $base-font-size * 1.1rem;
     }
 
     @include large {
