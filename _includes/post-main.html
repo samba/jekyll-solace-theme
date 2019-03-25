@@ -5,6 +5,11 @@
 {% assign authorurl = "/blog/author/#" | append: authslug | prepend: site.baseurl %}
 {% assign count_tags = post.tags | size %}
 
+
+{% assign count_words = page.content | number_of_words %}
+{% assign reading_time_min = count_words | divided_by: 150 %}
+
+
 <article class="{{ include.class }}">
     
     {% if include.header %}
@@ -26,6 +31,12 @@
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
         </span>
         {% endunless %}
+        {% if include.show_reading_time %}
+        <span class="readingtime avoidwrap">
+            <span class="print-only">Reading time:</span>
+            ({{ reading_time_min }} min)
+        </span>
+        {% endif %}
 
         {% if count_tags > 0 %}
         <ul class="tags">

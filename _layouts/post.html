@@ -6,13 +6,13 @@ body_class: post
 ---
 
 
-{% include post-main.html post=page %}
 
-
+{% include post-main.html post=page show_reading_time=true %}
 
 
 
 {% assign count_tags = page.tags | size %}
+
 {% if count_tags > 0 %}
 <aside class="row">
     <div class="container">
