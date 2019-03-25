@@ -1,7 +1,14 @@
 
     {% if paginator.posts %}
     {% for page in paginator.posts %}
-    {% include post-main.html post=page class=include.class excerpt=include.excerpt fullbody=include.fullbody show_tags=include.show_tags header=include.header %}
+
+    {% if include.fullbody == true %}
+    {% include post-main.html post=page header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% elsif include.excerpt == true %}
+    {% include post-excerpt.html post=page readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% endif %}
+    
+    
     {% endfor %}
 
 
@@ -13,7 +20,13 @@
 
     {% else %}
     {% for page in site.posts limit:100 %}
-    {% include post-main.html post=page class=include.class %}
+
+    {% if include.fullbody == true %}
+    {% include post-main.html post=page header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% elsif include.excerpt == true %}
+    {% include post-excerpt.html post=page readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% endif %}
+
     {% endfor %}
     {% endif %}
 
