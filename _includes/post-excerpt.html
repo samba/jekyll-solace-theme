@@ -1,6 +1,4 @@
 
-
-
 {% assign post = include.post | default: include.page | default: page %}
 {% assign author = site.data.authors[post.author] | default: site.author %}
 {% assign authslug = author.name | slugify %}
@@ -9,7 +7,7 @@
 {% assign count_tags = post.tags | size %}
 {% assign header_tag = include.header | default: "h2" %}
 
-{% assign count_words = page.content | number_of_words %}
+{% assign count_words = post.content | number_of_words %}
 {% assign reading_time_min = count_words | divided_by: 150 %}
 
 
@@ -31,12 +29,12 @@
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
         </span>
         {% endunless %}
-        {% if include.show_reading_time %}
+        {% unless include.show_reading_time == false %}
         <span class="readingtime avoidwrap">
             <span class="print-only">Reading time:</span>
             ({{ reading_time_min }} min)
         </span>
-        {% endif %}
+        {% endunless %}
 
         {% unless include.show_tags == false %}
         {% if count_tags > 0 %}
