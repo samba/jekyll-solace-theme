@@ -36,10 +36,10 @@ home:
     enabled: true
     pinned:
       # enabled: true
-      display_mode: excerpt                 # options are "fullbody" or "excerpt". 
+      # display_mode: excerpt                 # options are "fullbody" or "excerpt". 
     recent:
       # enabled: true
-      display_mode: fullbody                 # options are "fullbody" or "excerpt". 
+      # display_mode: fullbody                 # options are "fullbody" or "excerpt". 
 
 
 # Automatically infer title values from page content if needed
