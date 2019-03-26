@@ -1,0 +1,16 @@
+
+{% assign recent = include.recent | default: 3 %}
+{% assign pinned_style = site.home.blog.pinned.display_mode | default: "auto" %}
+{% assign recent_style = site.home.blog.recent.display_mode | default: "auto" %}
+
+{% unless site.home.blog.enabled == false %}
+
+{% unless site.home.blog.pinned.enabled == false %}
+{% include post-listing.html sticky=true display_style=pinned_style show_tags=true header="h2" class="sticky" %}
+{% endunless %}
+
+{% unless site.home.blog.recent.enabled == false %}
+{% include post-listing.html recent=recent display_style=recent_style show_tags=true header="h2" class="recent" %}
+{% endunless %}
+
+{% endunless %}
