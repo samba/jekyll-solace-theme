@@ -12,6 +12,10 @@ $alternating-class: '.alt-dark' !default;
 
 body {
 
+    span.disabled {
+        color: $grey-color;
+    }
+
     &.blog, &.post {
     
         aside.publication-data {
