@@ -1,13 +1,36 @@
 
-    {% if paginator.posts %}
-    {% for page in paginator.posts %}
+    {% assign auto_excerpt_limit = site.auto_excerpt_limit | default: 300 %}
 
+    {% if paginator.posts %}
+    {% for post in paginator.posts %}
+
+    {% assign wordcount = post.content | number_of_words %}
+    {% assign display_style = include.display_style | default: nil %}
+    
     {% if include.fullbody == true %}
-    {% include post-main.html post=page header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% assign display_style = "fullbody" %}
     {% elsif include.excerpt == true %}
-    {% include post-excerpt.html post=page readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% assign display_style = "excerpt" %}
+    {% elsif display_style == "auto" %}
+    {% assign display_style = nil %}
     {% endif %}
     
+    {% if wordcount < auto_excerpt_limit %}
+    {% assign display_style = display_style | default: "fullbody" %}
+    {% else %}
+    {% assign display_style = display_style | default: "excerpt" %}
+    {% endif %}
+
+    
+    <!-- words: {{ wordcount }} @ {{ auto_excerpt_limit }} : {{ display_style }} ({{ include.display_style }}, {{ include.fullbody }}, {{ include.excerpt }}) -->
+    {% case display_style %}
+    {% when "fullbody" %}
+    {% include post-main.html post=post header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% when "excerpt" %}
+    {% include post-excerpt.html post=post readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% else %}
+    <!-- # {{ display_style }} @ {{ post.title }}  -->
+    {% endcase %}
     
     {% endfor %}
 
@@ -19,14 +42,37 @@
     </div>
 
     {% else %}
-    {% for page in site.posts limit:100 %}
+    {% for post in site.posts limit:100 %}
 
+
+    {% assign wordcount = post.content | number_of_words %}
+    {% assign display_style = include.display_style | default: nil %}
+    
     {% if include.fullbody == true %}
-    {% include post-main.html post=page header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% assign display_style = "fullbody" %}
     {% elsif include.excerpt == true %}
-    {% include post-excerpt.html post=page readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% assign display_style = "excerpt" %}
+    {% elsif display_style == "auto" %}
+    {% assign display_style = nil %}
+    {% endif %}
+    
+    {% if wordcount < auto_excerpt_limit %}
+    {% assign display_style = display_style | default: "fullbody" %}
+    {% else %}
+    {% assign display_style = display_style | default: "excerpt" %}
     {% endif %}
 
+    
+    <!-- words: {{ wordcount }} @ {{ auto_excerpt_limit }} : {{ display_style }} ({{ include.display_style }}, {{ include.fullbody }}, {{ include.excerpt }}) -->
+    {% case display_style %}
+    {% when "fullbody" %}
+    {% include post-main.html post=post header=include.header class=include.class show_tags=include.show_tags show_author=include.show_author %}
+    {% when "excerpt" %}
+    {% include post-excerpt.html post=post readmore=include.readmore  show_tags=include.show_tags show_author=include.show_author class=include.class %}
+    {% else %}
+    <!-- # {{ display_style }} @ {{ post.title }}  -->
+    {% endcase %}
+    
     {% endfor %}
     {% endif %}
 
