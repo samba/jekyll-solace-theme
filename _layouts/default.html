@@ -1,58 +1,12 @@
 ---
-layout: default
+layout: base
 hidden: false
 ---
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-{% assign collection_meta = site.collections | where: "label", page.collection | first %}
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-        {% include head.html %}
-	</head>
+<section class="content">
+{{content}}
+</section>
 
-	{% assign navstyle = site.navigation_style | default: "nav-sidebar sidebar-overlay" %}
-	<body {{ body_tags }} class="layout-{{page.layout | slugify}} {{ navstyle }} {{page.body_class}} {{ collection_meta.body_class | default: "default-collection" }}">
-
-
-		{% include nav.html %}
-		
-
-		<main>
-		{% assign pagetitle = page.title | default: site.title %}
-		{% include header.html title=pagetitle %}
-
-
-        {{content}}
-
-		<footer class="bottom">
-		<div class="vcenter center">
-
-			<p class="copyright meta small">
-			&copy; {{ page.author | default: site.author.name }},
-				{{ page.date | default: site.time | date: "%Y" }}. 
-				All Rights Reserved.
-			</p>
-
-			<p class='print-only small'>
-			Retrieved from &lt;{{site.url}}{{page.url}}&gt;.
-			</p>
-
-			<p><a class="home meta small" href="{{ "/" | relative_url }}">{{ site.title }}</a></p>
-		</div>
-		</footer>
-
-		</main>
-
-
-	</body>
-
-<!--
-Metadata:
-- page.title: {{ page.title }}
-- page.path: {{ page.path }}
-- page.url: {{ page.url }}
-- page.permalink: {{ page.permalink }}
-	
--->
-
-</html>
+<footer>
+{% include footer.html %}
+</footer>
