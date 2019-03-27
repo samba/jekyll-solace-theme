@@ -17,31 +17,33 @@
 
             {% assign pages = site.pages %}
 
-
             {% if site.navigation.pages %}
             {% assign pages = site.navigation.pages %}
             {% endif %}
 
-            {% assign home_paths = "home.html|index.html|README.md" | split: "|" %}
+
+            {% assign home_paths = "home.html|index.html|README.md|index.md" | split: "|" %}
             {% assign home = pages | where_exp: "p", "home_paths contains p.path" | uniq %}
+            {% assign home_root = pages | where: "url", "/" | uniq %}
             
             {% assign pages = pages | uniq | sort: "url" %}
-            {% assign pages = home | concat: pages | uniq %}
-            {% for page in pages %}
-                {% assign is_root = (home_paths contains page.path) %}
-                {% unless page.menu == false or page.hidden %}
+            {% assign pages = home_root | concat: home | concat: pages | uniq %}
 
+            {% for page in pages %}
                 {% if is_root %}
                 {% assign title_default = page.title | default: site.title %}
                 {% endif %}
-               
+                {% if (page.url == "/" or home_paths contains page.path or page.menu) and (page.hidden != true) %}
+                <!-- page included: {{page.path}} {{page.url}} @show:{{page.menu}} @hide:{{page.hidden}} -->
+                {% assign purl = page.permalink | default: page.url | relative_url %}
                 <li class="page" data-page-path="{{ page.path }}">
-                    <a class="page" href="{{ page.permalink | default: page.url | prepend: site.baseurl }}">
+                    <a class="page" href="{{ purl | replace: "//", "/" }}">
                         {{ title_default | default: page.menu_title | default: page.title | default: "(untitled)" }}
                     </a>
                 </li>
-
-                {% endunless %}
+                {% else %}
+                <!-- page skipped: {{page.path}} {{page.url}} @show:{{page.menu}} @hide:{{page.hidden}} -->
+                {% endif %}
             {% endfor %}
             </ul>
         </section>
@@ -53,7 +55,7 @@
             <ul>
                 <!-- just the first page of blog (main) -->
                 {% assign blogpage = site.pages | where: "path", "blog/index.html" | first %}
-                <li><a href="{{ blogpage.url | prepend: site.baseurl }}">{{ blogpage.title }}</a></li>
+                <li><a href="{{ blogpage.url | relative_url }}">{{ blogpage.title }}</a></li>
             </ul>
             
             {% unless site.navigation.hide_blog_categories %}
