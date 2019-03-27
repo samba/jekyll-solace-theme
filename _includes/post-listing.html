@@ -6,7 +6,11 @@
 {% elsif include.tag %}
     {% assign posts = site.tags[include.tag] %}
 {% elsif include.sticky %}
-    {% assign posts = site.posts | where: "sticky",include.sticky %}
+    {% assign posts_sticky = site.posts | where: "sticky",include.sticky %}
+    {% assign posts_pinned = site.posts | where: "pinned",include.sticky %}
+    {% assign posts_featured = site.posts | where: "featured",include.sticky %}
+    {% assign posts = posts_featured | concat: posts_sticky | concat: posts_pinned | uniq %}
+    {% assign posts = posts | sort:"date" | reverse %}
 {% elsif include.author %}
     {% if include.author == "site.author" %}
     {% assign posts = site.posts | where: "author",nil %}
