@@ -52,3 +52,52 @@
 <script src='{{ "/assets/site.js" | relative_url }}'></script>
 
 
+
+
+{% unless site.sharethis.disabled %}
+<!-- share-this module: https://github.com/MaxArt2501/share-this -->
+<link href="https://cdn.jsdelivr.net/npm/share-this/dist/share-this.css" rel="stylesheet" type="text/css">
+<style>
+    .share-this-popover a[href]:link {
+        color: white; /* the default share-this background is black; */
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/share-this.js"></script>
+{% if site.sharethis.email %}
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/email.js"></script>
+{% endif %}
+{% if site.sharethis.twitter %}
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/twitter.js"></script>
+{% endif %}
+{% if site.sharethis.linkedin %}
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/linked-in.js"></script>
+{% endif %}
+{% if site.sharethis.reddit %}
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/reddit.js"></script>
+{% endif %}
+{% if site.sharethis.facebook %}
+<script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/facebook.js"></script>
+{% endif %}
+<script>
+function applySharingSelector(){
+    var sharers = [];
+    {% if site.sharethis.facebook %} sharers.push(ShareThisViaFacebook); {% endif %}
+    {% if site.sharethis.twitter %} sharers.push(ShareThisViaTwitter); {% endif %}
+    {% if site.sharethis.linkedin %} sharers.push(ShareThisViaLinkedIn); {% endif %}
+    {% if site.sharethis.reddit %} sharers.push(ShareThisViaReddit); {% endif %}
+    {% if site.sharethis.email %} sharers.push(ShareThisViaEmail); {% endif %}
+
+    return ShareThis({
+        document: document,
+        popoverClass: 'share-this-popover',
+        selector: 'article',
+        shareUrl: window.location.href,
+        transformer: raw => raw.trim().replace(/\s+/g, " "), 
+        sharers: sharers
+    }).init()
+}
+
+setTimeout(applySharingSelector, 1000);
+</script>
+{% endunless %}

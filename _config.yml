@@ -12,6 +12,17 @@ author:
   linkedin: (linkedin username)             # change me
   github: (github usernme)                  # change me
 
+
+sharethis:
+  disabled: false
+  facebook: false
+  twitter: true
+  linkedin: true
+  reddit: true
+  email: true
+
+
+
 # Which service should @mentions reference?
 jekyll-mentions:
   base_url: https://twitter.com

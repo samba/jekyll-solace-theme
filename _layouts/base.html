@@ -17,6 +17,10 @@ hidden: false
 		{% include nav.html %}
 		
 
+		{% unless site.sharethis.disabled %}
+		{% include sharing.html %}
+		{% endunless %}
+
 		<main>
 		{% assign pagetitle = page.title | default: site.title %}
 		{% include header.html title=pagetitle %}
