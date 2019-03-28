@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: base
 hidden: false
 ---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,18 +15,18 @@ hidden: false
 
 
 		{% include nav.html %}
-		
-
-		{% unless site.sharethis.disabled %}
-		{% include sharing.html %}
-		{% endunless %}
 
 		<main>
 		{% assign pagetitle = page.title | default: site.title %}
 		{% include header.html title=pagetitle %}
 
+			
+		{% include sharing.html class="sidebar" %}
+
+		{{content}}
 		
-        {{content}}
+
+		{% include sharing.html class="article-footer" %}
 
 		<footer class="bottom">
 		<div class="vcenter center">

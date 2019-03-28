@@ -54,7 +54,7 @@
 
 
 
-{% unless site.sharethis.disabled %}
+{% unless site.sharing.disabled %}
 <!-- share-this module: https://github.com/MaxArt2501/share-this -->
 <link href="https://cdn.jsdelivr.net/npm/share-this/dist/share-this.css" rel="stylesheet" type="text/css">
 <style>
@@ -64,34 +64,31 @@
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/share-this.js"></script>
-{% if site.sharethis.email %}
+{% if site.sharing.email %}
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/email.js"></script>
 {% endif %}
-{% if site.sharethis.twitter %}
+{% if site.sharing.twitter %}
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/twitter.js"></script>
 {% endif %}
-{% if site.sharethis.linkedin %}
+{% if site.sharing.linkedin %}
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/linked-in.js"></script>
 {% endif %}
-{% if site.sharethis.reddit %}
+{% if site.sharing.reddit %}
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/reddit.js"></script>
 {% endif %}
-{% if site.sharethis.facebook %}
+{% if site.sharing.facebook %}
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/sharers/facebook.js"></script>
 {% endif %}
 <script>
 function applySharingSelector(){
     var sharers = [];
-    {% if site.sharethis.facebook %} sharers.push(ShareThisViaFacebook); {% endif %}
-    {% if site.sharethis.twitter %} sharers.push(ShareThisViaTwitter); {% endif %}
-    {% if site.sharethis.linkedin %} sharers.push(ShareThisViaLinkedIn); {% endif %}
-    {% if site.sharethis.reddit %} sharers.push(ShareThisViaReddit); {% endif %}
-    {% if site.sharethis.email %} sharers.push(ShareThisViaEmail); {% endif %}
+    {% if site.sharing.facebook %} sharers.push(ShareThisViaFacebook); {% endif %}
+    {% if site.sharing.twitter %} sharers.push(ShareThisViaTwitter); {% endif %}
+    {% if site.sharing.linkedin %} sharers.push(ShareThisViaLinkedIn); {% endif %}
+    {% if site.sharing.reddit %} sharers.push(ShareThisViaReddit); {% endif %}
+    {% if site.sharing.email %} sharers.push(ShareThisViaEmail); {% endif %}
 
-    if (!window.matchMedia
-        || !window.matchMedia("(pointer: coarse)").matches) {
-        selectionShare.init();
-    }
+    
 
     return ShareThis({
         document: document,
@@ -104,9 +101,16 @@ function applySharingSelector(){
 }
 
 
-setTimeout(applySharingSelector, 1000);
+
+
 setTimeout(function(){
-    document.body.classList.add('social-active');
+    if (!window.matchMedia
+        || !window.matchMedia("(pointer: coarse)").matches) {
+            setTimeout(applySharingSelector, 1000);
+            document.body.classList.add('social-active');
+    } else {
+        document.body.classList.add('social-inactive');
+    }
 }, 200);
 
 
