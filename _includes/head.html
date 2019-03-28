@@ -88,6 +88,11 @@ function applySharingSelector(){
     {% if site.sharethis.reddit %} sharers.push(ShareThisViaReddit); {% endif %}
     {% if site.sharethis.email %} sharers.push(ShareThisViaEmail); {% endif %}
 
+    if (!window.matchMedia
+        || !window.matchMedia("(pointer: coarse)").matches) {
+        selectionShare.init();
+    }
+
     return ShareThis({
         document: document,
         popoverClass: 'share-this-popover',
@@ -98,6 +103,18 @@ function applySharingSelector(){
     }).init()
 }
 
+
 setTimeout(applySharingSelector, 1000);
+setTimeout(function(){
+    document.body.classList.add('social-active');
+}, 200);
+
+
+</script>
+{% else %}
+<script>
+    setTimeout(function(){
+        document.body.classList.add('social-inactive');
+    }, 200);
 </script>
 {% endunless %}
