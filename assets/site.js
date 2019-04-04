@@ -80,4 +80,15 @@ layout: null
 
     });
 
+    var ctr = 0;
+    function logDisplayWidth(){ 
+        var width = $(window).width() / parseFloat($("body").css("font-size"));
+        width = Number(Number.parseFloat(width).toPrecision(3));
+        console.log("device-width(em):", width, "#" + (++ctr)); 
+    }
+
+    $(window).resize(logDisplayWidth);
+    $(document).ready(logDisplayWidth);
+
+
 }(window.jQuery, window));
