@@ -6,9 +6,12 @@ body_class: post
 ---
 
 
+{% include sharing.html class="sidebar" %}
 
 {% include post-main.html post=page show_reading_time=true %}
 
+
+{% include sharing.html class="article-footer" %}
 
 
 {% assign count_tags = page.tags | size %}

@@ -6,16 +6,24 @@ $button-opacity: 0.7;
 
 aside.social-share-buttons {
 
+  div.sharing {
+    font-size: 90%;
+  }
+
+  // article.social-share-buttons.sidebar
   &.sidebar {
+    // NOTE: this is actually a container of the sidebar. 
+    // width: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0;
+   
     display: none;
 
-    margin-left: 1em;
     margin-left: auto;
     margin-right: auto;
 
-    float: left; 
-    clear: left;
-   
     z-index: 20000;
   
     @include small {
@@ -23,42 +31,65 @@ aside.social-share-buttons {
     }
   
     @include large {
-      
-      position: relative;
       display: block;
-      display: inline-block;
-
-      // top: 4em;
-      // left: -2em;
-      bottom: auto;
-      right: auto;
-      width: 2em; // causes it to display vertically
-      height: auto;
-  
-      margin-top: 2em;
-      margin-bottom: auto;
-  
     }
   
 
+    div.sharing {
+      position: fixed;
+      // left: -3em;
+      width: 2em;
+      height: 50%;
+
+      a.resp-sharing-button__link {
+        position: relative;
+        left: -5em;
+      }
+
+    }
+
   }
 
-  &.article-footer {
+  // article.social-share-buttons.article-header
+  &.article-header {
 
     display: none;
 
+    float: right;
+    clear: right;
+    
     @include medium-small {
       display: block;
-      bottom: 1em;
-      right: 0.5em;
-      top: auto;
-      left: auto;
       height: 2em; // causes it to display horizontally
       width: auto;
     }
   }
+ 
+  // article.social-share-buttons.article-footer
+  &.article-footer {
+
+    display: none;
+    clear: left;
+    float: left;
+
+    @extend %clearfix;
+
+    @include medium-small {
+      display: block;
+
+      div.sharing {
+        // height: 2em; // causes it to display horizontally
+        width: auto;
+      }
+
+
+    }
+  }
 
 }
+
+
+
 
  .resp-sharing-button__link,
  .resp-sharing-button__icon {
@@ -103,6 +134,8 @@ aside.social-share-buttons {
    stroke: none
  }
  
+
+
  .resp-sharing-button--twitter {
    background-color: #55acee
  }
@@ -284,3 +317,110 @@ aside.social-share-buttons {
    border-color: #FB6200;
  }
  
+
+.resp-sharing-button.black {
+
+  background-color: black;
+  border-color: black;
+
+  &:hover {
+    background-color: #222222;
+    border-color: #222222;
+  }
+
+  &:active {
+    background-color: #222222;
+    border-color: #222222;
+  }
+
+}
+
+.resp-sharing-button {
+  &.inverted {
+    filter: invert(100%);
+  }
+
+  &.greyscale, &.grayscale {
+    
+    $grey: #333333;
+    $white: #ffffff;
+
+
+    background-color: $grey;
+    border-color: $grey;
+  
+    &:hover {
+      background-color: lighten($grey, 50%);
+      border-color: lighten($grey, 50%);
+    }
+  
+    &:active {
+      background-color: lighten($grey, 50%);
+      border-color: lighten($grey, 50%);
+    }
+
+    .resp-sharing-button__link {
+      color: darken($white, 10%);
+    }
+  
+     /* Non solid icons get a stroke */
+    .resp-sharing-button__icon {
+      stroke: darken($white, 10%);
+      fill: none
+    }
+
+    /* Solid icons get a fill */
+    .resp-sharing-button__icon--solid,
+    .resp-sharing-button__icon--solidcircle {
+      fill: darken($white, 10%);
+      stroke: none
+    }
+
+  }
+
+  &.medium {
+    
+    $grey: #333333;
+
+
+
+    background-color: transparent;
+    border-color: $grey;
+  
+  
+     /* Non solid icons get a stroke */
+    .resp-sharing-button__icon {
+      stroke: lighten($grey, 50%);
+      fill: none;
+      border-color: darken($grey, 30%);
+    }
+
+    /* Solid icons get a fill */
+    .resp-sharing-button__icon--solid,
+    .resp-sharing-button__icon--solidcircle {
+      fill: lighten($grey, 50%);
+      stroke: none;
+      border-color: darken($grey, 30%);
+    }
+
+    &:hover {
+
+      /* Non solid icons get a stroke */
+      .resp-sharing-button__icon {
+        color: $grey;
+        stroke: $grey;
+
+      }
+
+      /* Solid icons get a fill */
+      .resp-sharing-button__icon--solid,
+      .resp-sharing-button__icon--solidcircle {
+        stroke: none;
+        color: $grey;
+        fill: $grey;
+      }
+    }
+
+  }
+
+}

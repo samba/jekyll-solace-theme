@@ -20,13 +20,10 @@ hidden: false
 		{% assign pagetitle = page.title | default: site.title %}
 		{% include header.html title=pagetitle %}
 
-			
-		{% include sharing.html class="sidebar" %}
+		
 
 		{{content}}
 		
-
-		{% include sharing.html class="article-footer" %}
 
 		<footer class="bottom">
 		<div class="vcenter center">

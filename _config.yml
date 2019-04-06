@@ -20,6 +20,8 @@ sharing:
   linkedin: true
   reddit: true
   email: true
+  style:
+    color-mode: medium                     # options: "medium", "grayscale", "black" or (nil) 
 
 
 

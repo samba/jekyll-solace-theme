@@ -3,13 +3,15 @@ layout: base
 metadata: false
 menu: true
 ---
-
+		
+{% include sharing.html class="sidebar"  %}
 
 
 <article class="content {{page.content_class}}">
 {{ content }}
 </article>
 
+{% include sharing.html class="article-footer" %}
 
 <footer>
 {% include footer.html %}
