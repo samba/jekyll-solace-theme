@@ -1,16 +1,115 @@
 
-{% assign recent = include.recent | default: 3 %}
+{% assign recent_limit = include.recent | default: 3 %}
 {% assign pinned_style = site.home.blog.pinned.display_mode | default: "auto" %}
 {% assign recent_style = site.home.blog.recent.display_mode | default: "auto" %}
-
+{% assign header = include.header | default: "h2" %}
+{% assign auto_excerpt_limit = site.auto_excerpt_limit | default: 300 %}
 {% unless site.home.blog.enabled == false %}
 
-{% unless site.home.blog.pinned.enabled == false %}
-{% include post-listing.html sticky=true display_style=pinned_style show_tags=true header="h2" class="sticky" %}
-{% endunless %}
 
-{% unless site.home.blog.recent.enabled == false %}
-{% include post-listing.html recent=recent display_style=recent_style show_tags=true header="h2" class="recent" %}
+
+
+
+
+
+<!-- BEGIN featured posts -->
+{% unless site.home.blog.pinned.enabled == false %}
+
+
+{% assign posts_sticky = site.posts | where: "sticky",true %}
+{% assign posts_pinned = site.posts | where: "pinned",true %}
+{% assign posts_featured = site.posts | where: "featured",true %}
+{% assign featured = posts_featured | concat: posts_sticky | concat: posts_pinned | uniq %}
+{% assign featured = featured | sort:"date" | reverse %}
+<!-- collected {{ posts | size }} sticky/featured/pinned posts -->
+
+{% assign posts_urls = featured | map: "url" %}
+
+
+{% for post in featured limit:recent_limit %}
+
+{% assign wordcount = post.content | number_of_words %}
+{% assign display_style = pinned_style | default: nil %}
+
+{% if display_style == "auto" %}
+{% assign display_style = nil %}
+{% endif %}
+
+{% if wordcount < auto_excerpt_limit %}
+{% assign display_style = display_style | default: "fullbody" %}
+{% else %}
+{% assign display_style = display_style | default: "excerpt" %}
+{% endif %}
+
+
+<!-- words: {{ wordcount }} @ {{ auto_excerpt_limit }} : {{ display_style }} ({{ include.display_style }}, {{ include.fullbody }}, {{ include.excerpt }}) -->
+{% case display_style %}
+{% when "fullbody" %}
+{% include post-main.html post=post header=header class="sticky" %}
+{% when "excerpt" %}
+{% include post-excerpt.html post=post readmore=include.readmore  show_tags=true show_author=include.show_author class="sticky" %}
+{% else %}
+<!-- # {{ display_style }} @ {{ post.title }}  -->
+{% endcase %}
+
+{% endfor %}
+{% else %}
+{% assign posts_urls = "" | split: "" %}
 {% endunless %}
+<!-- END featured posts -->
+
+
+
+
+
+
+
+<!-- BEGIN recent posts -->
+{% unless site.home.blog.recent.enabled == false %}
+{% assign loop_limit = recent_limit %}
+{% assign loop_count = 0 %}
+{% for post in site.posts %}
+
+{% if posts_urls contains post.url %}
+{% continue %}
+{% endif %}
+
+
+{% assign wordcount = post.content | number_of_words %}
+{% assign display_style = recent_style | default: nil %}
+
+
+{% if display_style == "auto" %}
+{% assign display_style = nil %}
+{% endif %}
+
+{% if wordcount < auto_excerpt_limit %}
+{% assign display_style = display_style | default: "fullbody" %}
+{% else %}
+{% assign display_style = display_style | default: "excerpt" %}
+{% endif %}
+
+
+<!-- words: {{ wordcount }} @ {{ auto_excerpt_limit }} : {{ display_style }} ({{ include.display_style }}, {{ include.fullbody }}, {{ include.excerpt }}) -->
+{% case display_style %}
+{% when "fullbody" %}
+{% include post-main.html post=post header=header class="recent" %}
+{% when "excerpt" %}
+{% include post-excerpt.html post=post readmore=include.readmore  show_tags=true show_author=include.show_author class="recent" %}
+{% else %}
+<!-- # {{ display_style }} @ {{ post.title }}  -->
+{% endcase %}
+
+{% assign loop_count = loop_count | plus: 1 %}
+
+
+{% if loop_count >= recent_limit %}
+{% break %}
+{% endif %}
+
+{% endfor %}
+{% endunless %}
+<!-- END recent posts -->
+
 
 {% endunless %}
