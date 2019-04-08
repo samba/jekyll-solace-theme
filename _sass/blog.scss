@@ -134,6 +134,37 @@ body {
             }
         }
 
+        blockquote {
+
+            font-style: italic;
+            color: $brand-color-dark;
+
+            border: {
+                left: 0.25em $brand-color solid;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            }
+
+            padding: {
+                left: 1em;
+                top: 0;
+                bottom: 0;
+                right: 0;
+            }
+
+            margin: {
+                left: 0.5em;
+                bottom: 1em;
+                top: 1em;
+                right: 0;
+            }
+
+            p {
+                margin-bottom: 0.5em;
+            }
+        }
+
         section, article {
             & > {
                 header, section, aside, footer {
@@ -141,6 +172,7 @@ body {
                     margin-right: 0;
                 }
             }
+
         }
 
         article {
