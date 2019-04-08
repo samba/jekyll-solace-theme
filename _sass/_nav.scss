@@ -12,15 +12,15 @@ body.nav-sidebar {
 
     @import "sidebar";
     
-    #{$content-wrapper} > header {
+    #{$content-wrapper} > header:first-of-type {
         // Top header gets shifted to the right when the screen is condensed.
         
         @include small {
-            padding-left: 4rem;
+            padding-left: 3rem;
         }
 
         @include medium {
-            padding-left: 4rem;
+            padding-left: 3rem;
         }
 
     }

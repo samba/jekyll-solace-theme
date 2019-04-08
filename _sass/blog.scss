@@ -150,7 +150,11 @@ body {
         & > article,
         & > section {
             @extend %autosize-content;
-            @include medium-small {
+            @include medium {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+            @include small {
                 margin-left: 0.25rem;
                 margin-right: 0.25rem;
             }
@@ -158,9 +162,13 @@ body {
 
         // first header of the page
         & > header {
-            margin-bottom: 2rem;
+            
+            @include large {
+                margin-bottom: 2rem;
+            }
+        
 
-            @include medium-small {
+            @include medium {
                 min-height: 3rem;
                 margin-top: 0.75rem;
                 margin-bottom: 0.5rem;

@@ -7,8 +7,8 @@ $sidebar-wrapper: 'div.navigation.sidebar' !default;
 $sidebar-activator: 'input#nav-checkbox' !default;
 $sidebar-control: 'label[for="nav-checkbox"]' !default;
 
-$sidebar-width: 18em !default;
-$sidebar-font-size: (1.1rem) !default;
+$sidebar-width: 16rem !default;
+$sidebar-font-size: (90%) !default;
 $sidebar-font-family: "Arial" !default;
 $sidebar-background: black !default;
 $sidebar-font-color: rgba(255,255,255,0.6) !default;
@@ -65,7 +65,7 @@ $copyright-font-size: 1em !default;
   position: fixed;
   top: 0;
   bottom: 0;
-  left: (-1 * $sidebar-width);
+  left: (-1 * $sidebar-width); // this hides the menu initially.
   width: $sidebar-width;
   max-width: 90%;
   visibility: hidden;
@@ -187,8 +187,8 @@ $copyright-font-size: 1em !default;
   		border-top: 1px solid $sidebar-trace-color;
 
       @include small {
-        padding-left:  1.5rem;
-        padding-right: 1.5rem;
+        padding-left:  1rem;
+        padding-right: 1rem;
       }
 
   		&.active,
@@ -236,7 +236,9 @@ $copyright-font-size: 1em !default;
   }
 
   @include small {
-    border: 0.125rem $activator-border-mobile solid;
+    // border: 0.125rem $activator-border-mobile solid;
+    top: 0.25rem;
+    left: 0.25rem;
   }
 
 
@@ -296,8 +298,6 @@ $copyright-font-size: 1em !default;
       -ms-transform: translateX($sidebar-width);
           transform: translateX($sidebar-width);
 }
-
-
 
 
 
