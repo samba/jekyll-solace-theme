@@ -21,11 +21,22 @@
     {% unless include.show_meta == false %}
     <aside  class="publication-data">
         <span class="avoidwrap">
-                Published 
-            <time class='post timestamp' datetime='{{ post.date | default: site.time | date: "%F %T %Z" }}'>
+            Published 
+            <time class='post timestamp published' datetime='{{ post.date | default: site.time | date: "%F %T %Z" }}'>
                     <a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | default: site.time | date_to_string }}</a>
             </time>
+
         </span>
+        {% if post.date_updated %}
+        <span class="avoidwrap">
+            Updated 
+            <time class='post timestamp updated' datetime='{{ post.date_updated | default: site.time | date: "%F %T %Z" }}'>
+                    {{ post.date_updated | default: site.time | date_to_string }}
+            </time>
+        </span>
+        {% endif %}
+
+       
         {% unless author == site.author %}
         <span class="author {{ authslug }} avoidwrap">
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
