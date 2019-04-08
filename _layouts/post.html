@@ -16,6 +16,8 @@ body_class: post
 
 {% assign count_tags = page.tags | size %}
 
+<!-- #{{ count_tags }} : {{ page.tags | jsonify }} -->
+
 {% if count_tags > 0 %}
 <aside class="row">
     <div class="container">
