@@ -110,7 +110,7 @@ $copyright-font-size: 1em !default;
   position: relative;
 
 
-	& > em, a, p {
+	& > em, a, p, i.fa {
     font-size: $sidebar-font-size;
 
     @include medium {
