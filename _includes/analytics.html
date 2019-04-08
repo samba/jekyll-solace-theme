@@ -1,0 +1,33 @@
+{% if site.analytics %}
+<script>
+window.dataLayer = window.dataLayer || [];
+
+(function(event, dataLayer){
+
+    var tags = event['page.tags'] = [];
+    {% for t in page.tags %}
+        tags.push('{{ t }}');
+    {% endfor %}
+
+    var categories = event['page.categories'] = [];
+    {% for c in page.categories %}
+        categories.push('{{ c }}');
+    {% endfor %}
+
+    dataLayer.push(event);
+}({'event': 'page.init'}, window.dataLayer));
+
+{% if site.analytics.google_tag_manager.id %}
+// Google Tag Manager loader.
+(function(w,d,s,l,i,j,f,dl,k,q){
+  w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+  f=d.getElementsByTagName(s)[0], k=i.length;
+  q='//www.googletagmanager.com/gtm.js?id=@&l='+(l||'dataLayer');
+  while(k--){j=d.createElement(s);j.async=!0;j.src=q.replace('@',i[k]);f.parentNode.insertBefore(j,f);}
+}(window,document,'script','dataLayer',['{{ site.analytics.google_tag_manager.id }}']));
+{% else %}
+// No valid Google Tag Manager ID present.
+{% endif %}
+
+</script>
+{% endif %}

@@ -13,6 +13,10 @@ author:
   github: (github usernme)                  # change me
 
 
+analytics:
+  google_tag_manager:
+    id: GTM-XXXXX
+
 sharing:
   disabled: false
   facebook: false
