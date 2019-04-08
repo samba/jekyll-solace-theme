@@ -38,9 +38,10 @@ body {
                 margin: 0;
 
                 @include large {
-                    position: absolute;
+                    // position: absolute;
                     // top: -0.5rem;
                     // top: 0.25rem;
+                    min-width: 50%;
                 }
 
                 li {
@@ -50,6 +51,7 @@ body {
                 @include medium-small {
                     clear: both;
                     float: left;
+                    min-width: 100%;
                     li {
                         margin-left: 0.25rem;
                         margin-right: 0.15rem;
