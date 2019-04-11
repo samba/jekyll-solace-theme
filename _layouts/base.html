@@ -29,7 +29,9 @@ hidden: false
 		<div class="vcenter center">
 
 			<p class="copyright meta small">
-			&copy; {{ page.author | default: site.author.name }},
+			{% assign author = site.data.authors[post.author] | default: site.author %}
+			{% assign author_name = author.name | default: site.author.name %}
+			&copy; {{ author_name }},
 				{{ page.date | default: site.time | date: "%Y" }}. 
 				All Rights Reserved.
 			</p>
