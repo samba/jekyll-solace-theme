@@ -42,6 +42,21 @@ By default, this theme supports `jekyll-readme-index`, so the homepage can be ge
 
 If you wish to provide your own home page, you can start by copying `home.html` to `index.html`. This page relies on the [home layout][2], which provides the _three_ most-recent blog posts.
 
+
+## Creating the Blog Index Pages
+
+This theme creates several pages that are structured to group posts by tag, category, and author. 
+The [site's front-end code](assets/site.js) automatically filters those pages when an associated anchor is used (e.g. `#tagname`).
+
+First, you should probably copy these pages out of the theme's source:
+
+- [blog/index.html](blog/index.html)
+- [blog/tag.html](blog/tag.html)
+- [blog/author.html](blog/author.html)
+- [blog/category.html](blog/category.html)
+
+
+
 ## Adding Pages in the Navigation menu
 
 By default, all pages in the `pages` directory get listed in the navigation menu.
