@@ -42,10 +42,10 @@
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
         </span>
         {% endunless %}
+
         {% unless include.show_reading_time == false %}
         <span class="readingtime avoidwrap">
-            <span class="print-only">Reading time:</span>
-            ({{ reading_time_min }} min)
+            (<span class="no-print">&#x25CF;</span> {{ reading_time_min }} min read)
         </span>
         {% endunless %}
 
@@ -63,8 +63,6 @@
     {% endunless %}
 
     {{ post.content | markdownify }}
-
-
 
 </article>
 
