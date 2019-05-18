@@ -12,6 +12,8 @@
 <meta name="theme-color" content="{{ site.manifest.theme_color | default: '#242e2b' }}"/>
 
 
+{% assign description = page.description | default: site.description %}
+
 
 {% if page.hidden %}
 <!-- page is hidden -->
@@ -19,6 +21,8 @@
 <title>{{page.title}} - {{site.name |default: site.title}}</title>
 <meta property="og:title" content="{{page.title}}" />
 <meta property="og:site_name" content="{{site.name}}" />
+<meta property="description" content="{{ description }}" />
+<meta property="og:description" content="{{ description }}" />
 {% else %}
 {% if page.seo_title %}
 {% seo title=false %}
