@@ -162,7 +162,7 @@ a[href] {
 
 body {
 
-    font-family: $base-font-family-sans;
+    font-family: $base-font-family;
     font-size: $base-font-size * 1rem;
     word-spacing: 0.15rem;
     letter-spacing: 0.025rem;
@@ -178,10 +178,6 @@ body {
     @include large {
         height: 100%;
         font-size: $base-font-size * 1.1em;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        font-family: $base-font-family;
     }
 
     .small {
