@@ -19,6 +19,12 @@ $inset-depth: 1em !default;
 $inset-radius: 0.25em !default;
 
 
+@mixin darkmode {
+	@media screen and (prefers-color-scheme: dark) {
+		@content;
+	}
+}
+
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
         @content;
