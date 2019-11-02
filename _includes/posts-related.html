@@ -1,5 +1,13 @@
 {% assign per_tag_limit = include.limit | default: 100 %}
 
+
+{% capture related_posts %}
+{% assign header_tag = include.header | default: "h2" %}
+{% if include.show_header %}
+<{{header_tag}}>Related Posts</{{header_tag}}>
+{% endif %}
+
+{% assign related_count = 0 %}
 <ol class="related-posts">
 {% for p in site.related_posts limit:per_tag_limit %}
 {% assign count_tags_common = 0 %}
@@ -11,6 +19,13 @@
 {% if count_tags_common < 1 %}
 {% continue %}
 {% endif %}
+{% assign related_count = related_count | plus: 1 %}
 <li class="post related"><a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a></li>    
 {% endfor %}
-</ol> 
+</ol>
+{% endcapture %}
+
+{% if related_count > 0 %}
+{{ related_posts }}
+{% endif %}
+

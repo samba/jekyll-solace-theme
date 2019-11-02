@@ -21,8 +21,8 @@ body_class: post
 {% if count_tags > 0 %}
 <aside class="row">
     <div class="container">
-        <h2>Related Posts</h2>
-            {% include posts-related.html post=page limit=page.related_limit  %}
+        {% assign related_header = "h2" %}
+        {% include posts-related.html post=page limit=page.related_limit show_header=true header=related_header %}
     </div>
 </aside>
 {% endif %}
