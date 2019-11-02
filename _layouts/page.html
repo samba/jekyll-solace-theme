@@ -2,13 +2,52 @@
 layout: base
 metadata: false
 menu: true
+body_class: page
 ---
-		
+
 {% include sharing.html class="sidebar"  %}
 
 
 <article class="content {{page.content_class}}">
-{{ content }}
+   
+    {% if page.subtitle %}
+    <header>
+        <p class="subtitle">{{ page.subtitle }}</p>
+    </header>
+    {% endif %}
+
+    {% if page.show_metadata %}
+    <aside class="publication-data">
+        <span class="avoidwrap padded">
+            Published
+            <time class='page timestamp published' datetime='{{ page.date | default: site.time | date: "%F %T %Z" }}'>
+                    <a href="{{ page.url | prepend: site.baseurl }}">{{ page.date | default: site.time | date_to_string }}</a>
+            </time>
+
+        </span>
+        {% if page.date_updated %}
+        <span class="avoidwrap padded">
+            Updated
+            <time class='page timestamp updated' datetime='{{ page.date_updated | default: site.time | date: "%F %T %Z" }}'>
+                    {{ page.date_updated | default: site.time | date_to_string }}
+            </time>
+        </span>
+        {% endif %}
+
+        {% unless author == site.author %}
+        <span class="author {{ authslug }} avoidwrap padded">
+            by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
+        </span>
+        {% endunless %}
+
+        {% unless include.show_reading_time == false %}
+        {% include reading-time.html page=page  %}
+        {% endunless %}
+
+    </aside>
+    {% endif %}
+
+    {{ content }}
 </article>
 
 {% include sharing.html class="article-footer" %}

@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Page Two
+show_metadata: true
+subtitle: >
+    This is a sample page.
 ---
 
 - [example one](http://example.com/one)

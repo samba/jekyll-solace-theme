@@ -16,6 +16,13 @@ body {
         color: $grey-color;
     }
 
+    header {
+        p.subtitle {
+            font-style: italic;
+            font-size: 1.4rem;
+        }
+    }
+
     &.blog, &.post {
 
         aside.publication-data {
