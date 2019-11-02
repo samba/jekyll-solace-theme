@@ -18,22 +18,20 @@
 
     {% unless include.show_meta == false %}
     <aside  class="publication-data">
-        <span class="avoidwrap">
+        <span class="avoidwrap padded">
             Published 
         <time class='post timestamp' datetime='{{ post.date | default: site.time | date: "%F %T %Z" }}'>
                 <a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | default: site.time | date_to_string }}</a>
         </time>
         </span>
         {% unless author == site.author %}
-        <span class="author {{ authslug }} avoidwrap">
+        <span class="author {{ authslug }} avoidwrap padded">
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
         </span>
         {% endunless %}
+
         {% unless include.show_reading_time == false %}
-        <span class="readingtime avoidwrap">
-            <span class="print-only">Reading time:</span>
-            ({{ reading_time_min }} min)
-        </span>
+        {% include reading-time.html reading_time_minutes=reading_time_min %}
         {% endunless %}
 
         {% unless include.show_tags == false %}

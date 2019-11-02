@@ -1,5 +1,5 @@
 /**
- Blog listing configurtion
+ Blog listing configuration
  */
 
 
@@ -17,36 +17,43 @@ body {
     }
 
     &.blog, &.post {
-    
+
         aside.publication-data {
             position: relative;
             @extend %row;
-            
-            span.avoidwrap {
-                @extend %clearfix;
-                float: left;
+
+            .padded {
                 margin-right: 1rem;
                 margin-bottom: 0.25rem;
                 display: block;
             }
-    
+
+
+
+            span.avoidwrap {
+                @extend %clearfix;
+                float: left;
+            }
+
 
             ul.tags {
                 @extend %list-no-break;
                 @extend %clearfix;
                 // margin: 0.25rem;
                 margin: 0;
+                margin-left: 0 !important;
 
                 @include large {
                     // position: absolute;
                     // top: -0.5rem;
                     // top: 0.25rem;
-                    min-width: 25%;
+                    // min-width: 25%;
                     max-width: 100%;
                 }
 
                 li {
-                    margin-left: 0.5rem;
+                    margin-left: 0;
+                    margin-right: 0.5rem;
                 }
 
                 @include medium-small {
