@@ -1,8 +1,17 @@
 
 
-{% if include.reading_time_minutes %}
+{% assign post = include.post | default: include.page | default: page %}
+
+{% assign count_words = post.content | number_of_words %}
+{% assign reading_time_min = count_words | divided_by: 150 %}
+
+{% if reading_time_min > 0 %}
+{% assign unit = "minute" %}
+{% if reading_time_min > 1 %}
+{% assign unit = "minutes" %}
+{% endif %}
 <span class="readingtime avoidwrap no-print padded">
-    Reading time: {{ include.reading_time_minutes }} minutes
+    Reading time: {{ reading_time_min }} {{ unit }}
 </span>
 {% endif %}
 

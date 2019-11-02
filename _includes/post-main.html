@@ -6,12 +6,8 @@
 {% assign count_tags = post.tags | size %}
 
 
-{% assign count_words = post.content | number_of_words %}
-{% assign reading_time_min = count_words | divided_by: 150 %}
-
-
 <article class="{{ include.class }}">
-    
+
     {% if include.header %}
     <header>
     <{{ include.header }}><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></{{ include.header }}>
@@ -36,7 +32,6 @@
         </span>
         {% endif %}
 
-       
         {% unless author == site.author %}
         <span class="author {{ authslug }} avoidwrap padded">
             by <a href="{{ author.web | default: author.url | default: authorurl }}" class="author">{{ author.name }}</a>
@@ -44,7 +39,7 @@
         {% endunless %}
 
         {% unless include.show_reading_time == false %}
-        {% include reading-time.html reading_time_minutes=reading_time_min %}
+        {% include reading-time.html post=post  %}
         {% endunless %}
 
 

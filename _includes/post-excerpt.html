@@ -7,10 +7,6 @@
 {% assign count_tags = post.tags | size %}
 {% assign header_tag = include.header | default: "h2" %}
 
-{% assign count_words = post.content | number_of_words %}
-{% assign reading_time_min = count_words | divided_by: 150 %}
-
-
 <article class="excerpt {{ include.class }}">
     <header>
         <{{ header_tag }}><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></{{ header_tag }}>
@@ -31,7 +27,7 @@
         {% endunless %}
 
         {% unless include.show_reading_time == false %}
-        {% include reading-time.html reading_time_minutes=reading_time_min %}
+        {% include reading-time.html post=post %}
         {% endunless %}
 
         {% unless include.show_tags == false %}
