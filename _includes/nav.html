@@ -71,12 +71,14 @@
             {% endunless %}
 
             {% unless site.navigation.hide_blog_tags %}
-            {% assign tagc = site.navigation.tag_count | default: 3 %}
+            {% assign tagc = site.navigation.tag_count | default: 3 | plus: 0 %}
             <em>Tags</em>
             <ul>
-                {% for tag in site.tags limit:tagc %}
+                {% assign tags_sorted = site.tags | nested_sort: '[1].size' %}
+                {% for tag in tags_sorted limit:tagc order:descending %}
                 {% assign t = tag | first %}
                 {% assign tagslug = t | slugify %}
+                <!-- posts in tag group: {{tag[1].size}} -->
                 <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }}>{{ t }}</a></li>
                 {% endfor %}
             </ul>
