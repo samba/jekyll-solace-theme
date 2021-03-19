@@ -32,9 +32,9 @@ endif
 
 # Show draft posts in the blog
 ifeq ($(DRAFT),1)
-$(eval DRAFT_ARG:="--drafts --unpublished")
+$(eval DRAFT_ARG:=--drafts --unpublished)
 else
-$(eval DRAFT_ARG:="")
+$(eval DRAFT_ARG:=)
 endif
 
 
