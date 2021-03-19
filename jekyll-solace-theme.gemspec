@@ -16,9 +16,11 @@ Gem::Specification.new do |spec|
   spec.files         = `find ./ -type f -print0`.split("\x0").select do |f| 
       f.match(%r{^(assets|_layouts|_includes|_sass|LICENSE|README)}i) 
   end
- 
-  spec.add_runtime_dependency "jekyll-seo-tag", "~> 2.5"
 
+  # For reference on dependency versions: https://pages.github.com/versions/
+
+  spec.add_runtime_dependency "github-pages"
+  spec.add_runtime_dependency "jekyll-seo-tag", "~> 2.7.1"
 
   # spec.add_runtime_dependency "jekyll-sitemap", "~> 0.13"
   # spec.add_runtime_dependency "jekyll-mentions", "~> 1.2"
@@ -28,11 +30,9 @@ Gem::Specification.new do |spec|
   # spec.add_runtime_dependency "jekyll-feed", "~> 0.9"
   # spec.add_runtime_dependency "jemoji", "~> 0.9"
 
-  spec.add_runtime_dependency "github-pages"
- 
-  spec.add_development_dependency "jekyll", "~> 3.7"
-  spec.add_development_dependency "bundler", "~> 1.17"
-  spec.add_development_dependency 'html-proofer', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.50'
-  spec.add_development_dependency 'w3c_validators', '~> 1.3'
+  spec.add_development_dependency "jekyll", "~> 3.9"
+  # spec.add_development_dependency "bundler", "~> 2.2"
+  # spec.add_development_dependency 'html-proofer', '~> 3.0'
+  # spec.add_development_dependency 'rubocop', '~> 0.50'
+  # spec.add_development_dependency 'w3c_validators', '~> 1.3'
 end
