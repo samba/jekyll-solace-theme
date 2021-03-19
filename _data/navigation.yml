@@ -10,3 +10,5 @@ menu:
 tags:
   title_text:
     lorem-ipsum:  "Lorem Ipsum"
+  featured:
+    - pizza

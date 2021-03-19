@@ -74,13 +74,21 @@
             {% assign tagc = site.navigation.tag_count | default: 3 | plus: 0 %}
             <em>Tags</em>
             <ul>
-                {% assign tags_sorted = site.tags | nested_sort: '[1].size' %}
-                {% for tag in tags_sorted limit:tagc order:descending %}
+                {% for t in site.data.navigation.tags.featured %}
+                {% assign tagslug = t | slugify %}
+                {% assign tagalias = site.data.navigation.tags.title_text[t] | default: t %}
+                    <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }} class=featured>{{ tagalias }}</a></li>
+                {% endfor %}
+
+                {% assign tags_sorted = site.tags | nested_sort: '[1].size' | reversed %}
+                {% for tag in tags_sorted limit:tagc %}
+                {% unless site.data.navigation.tags.featured contains tag[0] %}
                 {% assign t = tag | first %}
                 {% assign tagslug = t | slugify %}
                 {% assign tagalias = site.data.navigation.tags.title_text[t] | default: t %}
                 <!-- posts in tag group: {{tag[1].size}} -->
                 <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }}>{{ tagalias }}</a></li>
+                {% endunless %}
                 {% endfor %}
             </ul>
             {% endunless %}
