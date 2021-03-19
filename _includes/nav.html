@@ -78,8 +78,9 @@
                 {% for tag in tags_sorted limit:tagc order:descending %}
                 {% assign t = tag | first %}
                 {% assign tagslug = t | slugify %}
+                {% assign tagalias = site.data.navigation.tags.title_text[t] | default: t %}
                 <!-- posts in tag group: {{tag[1].size}} -->
-                <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }}>{{ t }}</a></li>
+                <li><a href={{ "/blog/tag/#" | append: tagslug | relative_url }}>{{ tagalias }}</a></li>
                 {% endfor %}
             </ul>
             {% endunless %}

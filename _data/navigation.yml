@@ -5,3 +5,8 @@ menu:
         url: http://example.com/1
       - name: Link Two
         url: http://example.com/2
+
+  
+tags:
+  title_text:
+    lorem-ipsum:  "Lorem Ipsum"
