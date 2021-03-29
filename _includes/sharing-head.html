@@ -50,7 +50,7 @@ function applySharingSelector(){
     return ShareThis({
         document: document,
         popoverClass: 'share-this-popover',
-        selector: 'article',
+        selector: 'body.social-active article',
         shareUrl: window.location.href,
         transformer: raw => raw.trim().replace(/\s+/g, " "), 
         sharers: sharers
@@ -65,7 +65,9 @@ setTimeout(function(){
         || !window.matchMedia("(pointer: coarse)").matches) {
             setTimeout(applySharingSelector, 1000);
             document.body.classList.add('social-active');
+            document.body.classList.remove('social-inactive');
     } else {
+        document.body.classList.remove('social-active');
         document.body.classList.add('social-inactive');
     }
 }, 200);
@@ -76,6 +78,19 @@ setTimeout(function(){
 <script>
     setTimeout(function(){
         document.body.classList.add('social-inactive');
+        document.body.classList.remove('social-active');
     }, 200);
 </script>
 {% endunless %}
+
+
+
+<script>
+    // Allow users to disable sharing plugin via cookie
+    setInterval(function(){
+        document.cookie.replace(/social_sharing=disabled/, function(){
+            document.body.classList.add('social-inactive');
+            document.body.classList.remove('social-active');
+        });
+    }, 300);
+</script>
