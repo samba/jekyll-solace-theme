@@ -6,6 +6,18 @@
     .share-this-popover a[href]:link {
         color: white; /* the default share-this background is black; */
     }
+
+    .share-this-popover::before {
+        margin-bottom: 0.3em;
+    }
+
+    .share-this-popover {
+        /* workaround a safari bug. 
+            https://stackoverflow.com/questions/56478925/safari-drop-shadow-filter-remains-visible-even-with-hidden-element */
+        will-change: filter; 
+    }
+
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/share-this/dist/share-this.js"></script>
