@@ -19,6 +19,8 @@ analytics:
 
 sharing:
   disabled: false
+  popover: # the selection tool
+    disabled: false
   facebook: false
   twitter: true
   linkedin: true
