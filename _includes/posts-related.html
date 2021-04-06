@@ -20,7 +20,12 @@
 {% continue %}
 {% endif %}
 {% assign related_count = related_count | plus: 1 %}
-<li class="post related"><a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a></li>    
+<li class="post related">
+    <a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a> 
+    <time class='post timestamp published publication-data' datetime='{{ p.date | default: site.time | date: "%F %T %Z" }}'>
+        {{ p.date | default: site.time | date_to_string }}
+    </time>
+</i></li>    
 {% endfor %}
 </ol>
 {% endcapture %}
